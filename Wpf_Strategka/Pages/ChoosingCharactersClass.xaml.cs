@@ -22,6 +22,7 @@ namespace Wpf_Strategka.Pages
     public partial class ChoosingCharactersClass : Page
     {
         ClassesInfo info = new ClassesInfo();
+
         public ChoosingCharactersClass()
         {
             InitializeComponent();
@@ -33,9 +34,13 @@ namespace Wpf_Strategka.Pages
             if (button != null)
             {
                 string buttonText = button.Content.ToString();
-                if (info.classInfo.ContainsKey(buttonText))
-                    HInfo.Text = info.classInfo[buttonText];
+                if (info.statsInfo.ContainsKey(buttonText) && info.heroInfo.ContainsKey(buttonText))
+                {
+                    HeroInfo.Text = info.heroInfo[buttonText];
+                    StatsInfo.Text = info.statsInfo[buttonText];
+                }
             }
         }
+
     }
 }
