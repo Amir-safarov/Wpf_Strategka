@@ -24,5 +24,32 @@ namespace Wpf_Strategka.Pages
         {
             InitializeComponent();
         }
+        private void IncreaseValue(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            TextBlock textBlock = (TextBlock)button.Tag;
+
+            if (int.TryParse(textBlock.Text, out int value))
+            {
+                value++;
+                if (value > 10)
+                    value = 10;
+                textBlock.Text = value.ToString();
+            }
+        }
+
+        private void DecreaseValue(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            TextBlock textBlock = (TextBlock)button.Tag;
+
+            if (int.TryParse(textBlock.Text, out int value))
+            {
+                value--;
+                if (value < 0)
+                    value = 0;
+                textBlock.Text = value.ToString();
+            }
+        }
     }
 }

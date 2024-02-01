@@ -24,7 +24,7 @@ namespace Wpf_Strategka
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new ChoosingCharactersClass());
+            MainFrame.Navigate(new CharacterСharacteristics());
         }
     }
 }
