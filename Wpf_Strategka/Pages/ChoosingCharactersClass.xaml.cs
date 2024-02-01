@@ -38,6 +38,9 @@ namespace Wpf_Strategka.Pages
                 {
                     HeroInfo.Text = info.heroInfo[buttonText];
                     StatsInfo.Text = info.statsInfo[buttonText];
+                    string imagePath = info.heroImages[buttonText];
+                    ImageSource imageSource = new BitmapImage(new Uri(imagePath, UriKind.Relative));
+                    ClassImg.Source = imageSource;
                 }
             }
         }

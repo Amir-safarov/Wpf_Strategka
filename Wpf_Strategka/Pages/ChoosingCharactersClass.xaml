@@ -10,7 +10,8 @@
     <Grid Height="700" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="60*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
@@ -22,17 +23,14 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <Image Grid.Column="1" Grid.Row="1" Name="ClassImg"></Image>
+        <Image Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Name="ClassImg" ></Image>
 
-        <StackPanel Grid.Column="3" Grid.Row="1">
-            <TextBlock Name="HeroInfo" TextWrapping="Wrap"></TextBlock>
-            <TextBlock Name="StatsInfo" TextWrapping="Wrap"></TextBlock>
+        <TextBlock Name="HeroInfo" TextWrapping="Wrap" Grid.Column="1" Grid.Row="2"></TextBlock>
+        <TextBlock Name="StatsInfo" TextWrapping="Wrap" Grid.Column="3" Grid.Row="1"></TextBlock>
 
-
-        </StackPanel>
-
-        <Button Grid.Column="1" Grid.Row ="2" Height="50" Margin="5" Click="Button_Click" >Warrior</Button>
-        <Button Grid.Column="2" Grid.Row ="2" Height="50" Margin="5" Click="Button_Click">Rogue</Button>
-        <Button Grid.Column="3" Grid.Row ="2" Height="50" Margin="5" Click="Button_Click">Wizard</Button>
+        <Button Grid.Column="1" Grid.Row ="2" Height="50" Margin="5" Click="Button_Click" VerticalAlignment="Bottom" >Warrior</Button>
+        <Button Grid.Column="2" Grid.Row ="2" Height="50" Margin="5" Click="Button_Click" VerticalAlignment="Bottom">Rogue</Button>
+        <Button Grid.Column="3" Grid.Row ="2" Height="50" Margin="5" Click="Button_Click" VerticalAlignment="Bottom">Wizard</Button>
+        <Button x:Name="NextBTN" Grid.Column="3" Grid.Row ="3" Height="50" Margin="5">Next</Button>
     </Grid>
 </Page>

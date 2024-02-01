@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wpf_Strategka.Properties;
 
 namespace Wpf_Strategka.Constants
 {
@@ -17,6 +18,11 @@ namespace Wpf_Strategka.Constants
             {"Warrior", $"Strength {warriorCurrentStats[0]}/250\nDexterity {warriorCurrentStats[1]}/80\nIntelligence {warriorCurrentStats[2]}/50\nVitality {warriorCurrentStats[3]}/100\n"},
             {"Rogue", $"Strength {rogueCurrentStats[0]}/65\nDexterity {rogueCurrentStats[1]}/250\nIntelligence {rogueCurrentStats[2]}/70\nVitality {rogueCurrentStats[3]}/80\n"},
             {"Wizard", $"Strength {wizardCurrentStats[0]}/250\nDexterity {wizardCurrentStats[1]}/80\nIntelligence {wizardCurrentStats[2]}/250\nVitality {wizardCurrentStats[3]}/70\n"},
+        };
+        internal Dictionary<string, string> heroImages = new Dictionary<string, string>(){
+            {"Warrior", "/Resources/blackWar.png"},
+            {"Rogue", "/Resources/rogue.png"},
+            {"Wizard", "/Resources/wizard.png"},
         };
         internal static int[] warriorCurrentStats = new int[] { 30, 15, 10, 25 };
         internal static int[] rogueCurrentStats = new int[] { 20, 30, 15, 20 };
