@@ -31,6 +31,6 @@
         <Button Grid.Column="1" Grid.Row ="2" Height="50" Margin="5" Click="Button_Click" VerticalAlignment="Bottom" >Warrior</Button>
         <Button Grid.Column="2" Grid.Row ="2" Height="50" Margin="5" Click="Button_Click" VerticalAlignment="Bottom">Rogue</Button>
         <Button Grid.Column="3" Grid.Row ="2" Height="50" Margin="5" Click="Button_Click" VerticalAlignment="Bottom">Wizard</Button>
-        <Button x:Name="NextBTN" Grid.Column="3" Grid.Row ="3" Height="50" Margin="5">Next</Button>
+        <Button x:Name="NextBTN" Grid.Column="3" Grid.Row ="3" Height="50" Margin="5" Click="NextBTN_Click">Next</Button>
     </Grid>
 </Page>

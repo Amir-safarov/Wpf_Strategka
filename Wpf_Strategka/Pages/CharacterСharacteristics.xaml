@@ -22,14 +22,17 @@
             <ColumnDefinition Width="11*"/>
         </Grid.ColumnDefinitions>
 
-        <Image Name="CharacterClassIMG" Grid.Column="2" Grid.ColumnSpan="2" Margin="264,13,0,0" Grid.RowSpan="2"/>
+        <Image Name="CharacterClassIMG" Grid.Column="1" Grid.Row="1"/>
+
+        <TextBlock Name="HeroInfo" TextWrapping="Wrap" Grid.Column="2" Grid.Row="2"></TextBlock>
+        <TextBlock Name="StatsInfo" TextWrapping="Wrap" Grid.Column="2" Grid.Row="1"></TextBlock>
 
         <StackPanel Grid.Column="1" Grid.Row="2" Margin="3">
             <DockPanel Margin="0,10,0,0" >
                 <TextBlock HorizontalAlignment="Left">Сила</TextBlock>
                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
                     <Button FontSize="18" Click="IncreaseValue" Tag="{Binding ElementName=StrengthTB}">+</Button>
-                    <TextBlock Name="StrengthTB" TextAlignment="Center" Padding="2" Width="25">10</TextBlock>
+                    <TextBlock Name="StrengthTB" TextAlignment="Center" Padding="2" Width="25">0</TextBlock>
                     <Button FontSize="18" Click="DecreaseValue" Tag="{Binding ElementName=StrengthTB}">-</Button>
                 </StackPanel>
             </DockPanel>
@@ -37,7 +40,7 @@
                 <TextBlock HorizontalAlignment="Left">Ловкость</TextBlock>
                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
                     <Button FontSize="18" Click="IncreaseValue" Tag="{Binding ElementName=DexterityTB}">+</Button>
-                    <TextBlock Name="DexterityTB" TextAlignment="Center" Padding="2" Width="25">10</TextBlock>
+                    <TextBlock Name="DexterityTB" TextAlignment="Center" Padding="2" Width="25">0</TextBlock>
                     <Button FontSize="18" Click="DecreaseValue" Tag="{Binding ElementName=DexterityTB}">-</Button>
                 </StackPanel>
             </DockPanel>
@@ -45,7 +48,7 @@
                 <TextBlock HorizontalAlignment="Left">Интеллект</TextBlock>
                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
                     <Button FontSize="18" Click="IncreaseValue" Tag="{Binding ElementName=InteligenceTB}">+</Button>
-                    <TextBlock Name="InteligenceTB" TextAlignment="Center" Padding="2" Width="25">10</TextBlock>
+                    <TextBlock Name="InteligenceTB" TextAlignment="Center" Padding="2" Width="25">0</TextBlock>
                     <Button FontSize="18" Click="DecreaseValue" Tag="{Binding ElementName=InteligenceTB}">-</Button>
                 </StackPanel>
             </DockPanel>
@@ -53,13 +56,13 @@
                 <TextBlock HorizontalAlignment="Left">Живучесть</TextBlock>
                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
                     <Button FontSize="18" Click="IncreaseValue" Tag="{Binding ElementName=VitalityTB}">+</Button>
-                    <TextBlock Name="VitalityTB" TextAlignment="Center" Padding="2" Width="25">10</TextBlock>
+                    <TextBlock Name="VitalityTB" TextAlignment="Center" Padding="2" Width="25">0</TextBlock>
                     <Button FontSize="18" Click="DecreaseValue" Tag="{Binding ElementName=VitalityTB}">-</Button>
                 </StackPanel>
             </DockPanel>
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0,150,0,0">
                 <TextBlock>Количество очков:</TextBlock>
-                <TextBlock Margin="10,0,0,0" Name="CurrentScoreTB">0</TextBlock>
+                <TextBlock Margin="10,0,0,0" Name="CurrentScoreTB">10</TextBlock>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Wpf_Strategka.Classes;
 using Wpf_Strategka.Constants;
 
 namespace Wpf_Strategka.Pages
@@ -22,7 +23,6 @@ namespace Wpf_Strategka.Pages
     public partial class ChoosingCharactersClass : Page
     {
         ClassesInfo info = new ClassesInfo();
-
         public ChoosingCharactersClass()
         {
             InitializeComponent();
@@ -34,16 +34,21 @@ namespace Wpf_Strategka.Pages
             if (button != null)
             {
                 string buttonText = button.Content.ToString();
+                App.className  = buttonText;
                 if (info.statsInfo.ContainsKey(buttonText) && info.heroInfo.ContainsKey(buttonText))
                 {
-                    HeroInfo.Text = info.heroInfo[buttonText];
-                    StatsInfo.Text = info.statsInfo[buttonText];
-                    string imagePath = info.heroImages[buttonText];
+                    HeroInfo.Text = info.heroInfo[App.className];
+                    StatsInfo.Text = info.statsInfo[App.className];
+                    string imagePath = info.heroImages[App.className];
                     ImageSource imageSource = new BitmapImage(new Uri(imagePath, UriKind.Relative));
                     ClassImg.Source = imageSource;
                 }
             }
         }
 
+        private void NextBTN_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new CharacterСharacteristics());
+        }
     }
 }
