@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using Wpf_Strategka.Classes;
-using Wpf_Strategka.Constants;
 
 namespace Wpf_Strategka.Pages
 {
@@ -13,67 +10,43 @@ namespace Wpf_Strategka.Pages
     /// </summary>
     public partial class CharacterСharacteristics : Page
     {
-        ClassesInfo info = new ClassesInfo();
-        const string Warrior = "Warrior";
-        const string Rogue = "Rogue";
-        const string Wizard = "Wizard";
-
-        int unitStrength;
-        int unitDexterity;
-        int unitInteligence;
-        int unitVitality;
-        int currentOD;
-
-        public CharacterСharacteristics()
+        private UninversalClass selectedClass;
+        int currentPoint;
+        public CharacterСharacteristics(UninversalClass uninversalClass)
         {
             InitializeComponent();
-            string imagePath = info.heroImages[App.className];
-            ImageSource imageSource = new BitmapImage(new Uri(imagePath, UriKind.Relative));
-            SetStartCharacteristik();
-            CharacterClassIMG.Source = imageSource;
-            HeroInfo.Text = info.heroInfo[App.className];
-            StatsInfo.Text = info.statsInfo[App.className];
-            currentOD = int.Parse(CurrentScoreTB.Text);
+
+            selectedClass = uninversalClass;
+            UpdateUIFromCharacteristics();
+            ShowInfo();  // Fixed typo in the method name
+            currentPoint = int.Parse(CurrentScoreTB.Text);
         }
-        private void SetStartCharacteristik()
+
+        private void UpdateUIFromCharacteristics()
         {
-            switch (App.className)
-            {
-                case (Warrior):
-                    unitStrength = ClassesInfo.warriorCurrentStats[0];
-                    unitDexterity = ClassesInfo.warriorCurrentStats[1];
-                    unitInteligence = ClassesInfo.warriorCurrentStats[2];
-                    unitVitality = ClassesInfo.warriorCurrentStats[3];
-                    break;
-                case (Rogue):
-                    unitStrength = ClassesInfo.rogueCurrentStats[0];
-                    unitDexterity = ClassesInfo.rogueCurrentStats[1];
-                    unitInteligence = ClassesInfo.rogueCurrentStats[2];
-                    unitVitality = ClassesInfo.rogueCurrentStats[3];
-                    break;
-                case (Wizard):
-                    unitStrength = ClassesInfo.wizardCurrentStats[0];
-                    unitDexterity = ClassesInfo.wizardCurrentStats[1];
-                    unitInteligence = ClassesInfo.wizardCurrentStats[2];
-                    unitVitality = ClassesInfo.wizardCurrentStats[3];
-                    break;
-            }
-            UninversalClass unit = new UninversalClass(App.className, "Igot", unitStrength, unitDexterity, unitInteligence, unitVitality);
-
-            unit.ShowUnfo();
-
+            StrengthTB.Text = selectedClass.Strength.ToString();
+            DexterityTB.Text = selectedClass.Dexterity.ToString();
+            InteligenceTB.Text = selectedClass.Inteligence.ToString();
+            VitalityTB.Text = selectedClass.Vitality.ToString();
         }
+
         private void IncreaseValue(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             TextBlock textBlock = (TextBlock)button.Tag;
+            double maxValue = GetMaxValueForTextBlock(textBlock);
 
             if (int.TryParse(textBlock.Text, out int value))
             {
-                value++;
-                if (value > 10)
-                    value = 10;
-                textBlock.Text = value.ToString();
+                if (value < maxValue && currentPoint > 0)  // Check if there are available points to spend
+                {
+                    value++;
+                    textBlock.Text = LimitValue(value, (int)maxValue).ToString();
+                    UpdateCharacteristicsFromUI();
+                    currentPoint--;
+                    CurrentScoreTB.Text = currentPoint.ToString();
+                    ShowInfo();  // Update info after increasing value
+                }
             }
         }
 
@@ -81,35 +54,53 @@ namespace Wpf_Strategka.Pages
         {
             Button button = (Button)sender;
             TextBlock textBlock = (TextBlock)button.Tag;
+            double maxValue = GetMaxValueForTextBlock(textBlock);
 
             if (int.TryParse(textBlock.Text, out int value))
             {
+                if (value > 0)
+                    currentPoint++;
                 value--;
-                if (value < 0)
-                    value = 0;
-                textBlock.Text = value.ToString();
+                textBlock.Text = LimitValue(value, (int)maxValue).ToString();
+                UpdateCharacteristicsFromUI();
+                CurrentScoreTB.Text = currentPoint.ToString();
+                ShowInfo();
             }
         }
 
-        private void Refresh(TextBlock textBlock)
+        private void UpdateCharacteristicsFromUI()
         {
-            string tbName = textBlock.Name;
-            int tbCount = int.Parse(textBlock.Text);
+            selectedClass.Strength = int.Parse(StrengthTB.Text);
+            selectedClass.Dexterity = int.Parse(DexterityTB.Text);
+            selectedClass.Inteligence = int.Parse(InteligenceTB.Text);
+            selectedClass.Vitality = int.Parse(VitalityTB.Text);
+        }
 
-            switch (tbName)
+        private void ShowInfo()
+        {
+            HeroInfo.Text = $"{selectedClass.ClassName}\n{selectedClass.Name}\n{selectedClass.Strength}/{selectedClass.MaxStrength}\n{selectedClass.Dexterity}/{selectedClass.MaxDexterity}\n{selectedClass.Inteligence}/{selectedClass.MaxInteligence}\n{selectedClass.Vitality}/{selectedClass.MaxVitality}\n{selectedClass.Health}\n{selectedClass.Mana}\n{selectedClass.PhysicalDamage}\n{selectedClass.Armor}\n{selectedClass.MagicDamage}\n{selectedClass.MagicDefense}\n{selectedClass.CritChanse}\n{selectedClass.CritDamage}";  // Fixed typo in property name
+        }
+        private double GetMaxValueForTextBlock(TextBlock textBlock)
+        {
+            switch (textBlock.Name)
             {
-                case ("StrengthTB"):
-                    unitStrength += tbCount;
-                    break;
-                case ("DexterityTB"):
-                    break;
-                case ("InteligenceTB"):
-                    break;
-                case ("VitalityTB"):
-                    break;
+                case "StrengthTB":
+                    return selectedClass.MaxStrength;
+                case "DexterityTB":
+                    return selectedClass.MaxDexterity;
+                case "InteligenceTB":
+                    return selectedClass.MaxInteligence;
+                case "VitalityTB":
+                    return selectedClass.MaxVitality;
                 default:
-                    break;
+                    return 0;
             }
         }
+
+        private int LimitValue(int value, int maxValue)
+        {
+            return Math.Max(0, Math.Min(value, (int)maxValue));
+        }
+
     }
 }

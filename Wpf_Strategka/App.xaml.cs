@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Wpf_Strategka.Classes;
 
 namespace Wpf_Strategka
 {
@@ -7,6 +8,5 @@ namespace Wpf_Strategka
     /// </summary>
     public partial class App : Application
     {
-        public static string className ="";
     }
 }
