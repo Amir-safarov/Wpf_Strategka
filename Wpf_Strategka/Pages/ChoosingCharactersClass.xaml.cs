@@ -40,13 +40,13 @@ namespace Wpf_Strategka.Pages
                 switch (buttonText)
                 {
                     case "Warrior":
-                        selectedClass = new UninversalClass("Warrior", "Artorius", 30, 200, 15, 80, 10, 50, 25, 100); ;
+                        selectedClass = new UninversalClass("Warrior", "", 30, 200, 15, 80, 10, 50, 25, 100); ;
                         break;
                     case "Rogue":
-                        selectedClass = new UninversalClass("Rogue", "Snake", 20, 65, 30, 200, 15, 70, 20, 80);
+                        selectedClass = new UninversalClass("Rogue", "", 20, 65, 30, 200, 15, 70, 20, 80);
                         break;
                     case "Wizard":
-                        selectedClass = new UninversalClass("Wizard", "Rudeus", 15, 45, 20, 80, 35, 200, 15, 70);
+                        selectedClass = new UninversalClass("Wizard", "", 15, 45, 20, 80, 35, 200, 15, 70);
                         break;
                 }
                 if (info.statsInfo.ContainsKey(selectedClass.ClassName) && info.heroInfo.ContainsKey(buttonText))
@@ -64,9 +64,22 @@ namespace Wpf_Strategka.Pages
 
         private void NextBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (selectedClass == null)
+            if (selectedClass == null || selectedClass.Name == "")
                 return;
             NavigationService.Navigate(new CharacterСharacteristics(selectedClass));
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (selectedClass == null)
+            {
+                MessageBox.Show("Сначала выберите класс");
+                textBox.Text = null;
+                return;
+            }
+            if (textBox != null)
+                selectedClass.Name = textBox.Text;
         }
     }
 }

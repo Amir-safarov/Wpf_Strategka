@@ -17,6 +17,7 @@
             <Setter Property="FontSize" Value="18"></Setter>
             <Setter Property="Background" Value="#006400"></Setter>
             <Setter Property="Foreground" Value="#151515"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
         </Style>
     </Application.Resources>
 </Application>
