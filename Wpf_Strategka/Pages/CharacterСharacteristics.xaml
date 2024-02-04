@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Wpf_Strategka.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="550"
-      Title="CharacterСharacteristics">
+      d:DesignHeight="700" d:DesignWidth="600"
+      Title="CharacterСharacteristics" Background="#151515">
 
     <Grid Height="700" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
@@ -21,11 +21,15 @@
             <ColumnDefinition Width="265*"/>
             <ColumnDefinition Width="11*"/>
         </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" Grid.Row="1" Background="#C0C0C0">
+            <Image Name="CharacterClassIMG" />
+        </StackPanel>
+        <DockPanel Grid.Column="2" Grid.Row="2" Background="#FF0D1352" Margin="10">
+            <TextBlock Name="HeroInfo" TextWrapping="Wrap"  Margin="5" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Name="HeroStats" TextWrapping="Wrap" Margin="5" HorizontalAlignment="Right"></TextBlock>
 
-        <Image Name="CharacterClassIMG" Grid.Column="1" Grid.Row="1"/>
-
-        <TextBlock Name="HeroInfo" TextWrapping="Wrap" Grid.Column="2" Grid.Row="2"></TextBlock>
-        <TextBlock Name="StatsInfo" TextWrapping="Wrap" Grid.Column="2" Grid.Row="1"></TextBlock>
+        </DockPanel>
+        <TextBlock Name="StatsInfo" TextWrapping="Wrap" Grid.Column="2" Grid.Row="1" Margin="10"></TextBlock>
 
         <StackPanel Grid.Column="1" Grid.Row="2" Margin="3">
             <DockPanel Margin="0,10,0,0" >

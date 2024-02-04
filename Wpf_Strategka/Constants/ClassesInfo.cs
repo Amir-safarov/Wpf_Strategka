@@ -15,7 +15,7 @@ namespace Wpf_Strategka.Constants
             {"Wizard", $"Strength {wizardCurrentStats[0]}/{wizarMaxStats[0]}\nDexterity {wizardCurrentStats[1]}/{wizarMaxStats[1]}\nIntelligence {wizardCurrentStats[2]}/{wizarMaxStats[2]}\nVitality {wizardCurrentStats[3]}/{wizarMaxStats[3]}\n"},
         };
         internal Dictionary<string, string> heroImages = new Dictionary<string, string>(){
-            {"Warrior", "/Resources/blackWar.png"},
+            {"Warrior", "/Resources/warrior.png"},
             {"Rogue", "/Resources/rogue.png"},
             {"Wizard", "/Resources/wizard.png"},
         };

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using System.Windows.Media;
 using Wpf_Strategka.Classes;
+using Wpf_Strategka.Constants;
 
 namespace Wpf_Strategka.Pages
 {
@@ -11,12 +14,17 @@ namespace Wpf_Strategka.Pages
     public partial class CharacterСharacteristics : Page
     {
         private UninversalClass selectedClass;
+        private ClassesInfo info = new ClassesInfo();
         int currentPoint;
         public CharacterСharacteristics(UninversalClass uninversalClass)
         {
             InitializeComponent();
 
             selectedClass = uninversalClass;
+            string imagePath = info.heroImages[selectedClass.ClassName];
+            ImageSource imageSource = new BitmapImage(new Uri(imagePath, UriKind.Relative));
+            CharacterClassIMG.Source =  imageSource;
+            StatsInfo.Text = info.statsInfo[selectedClass.ClassName];
             UpdateUIFromCharacteristics();
             ShowInfo();  // Fixed typo in the method name
             currentPoint = int.Parse(CurrentScoreTB.Text);
@@ -45,7 +53,7 @@ namespace Wpf_Strategka.Pages
                     UpdateCharacteristicsFromUI();
                     currentPoint--;
                     CurrentScoreTB.Text = currentPoint.ToString();
-                    ShowInfo();  // Update info after increasing value
+                    ShowInfo(); 
                 }
             }
         }
@@ -78,7 +86,17 @@ namespace Wpf_Strategka.Pages
 
         private void ShowInfo()
         {
-            HeroInfo.Text = $"{selectedClass.ClassName}\n{selectedClass.Name}\n{selectedClass.Strength}/{selectedClass.MaxStrength}\n{selectedClass.Dexterity}/{selectedClass.MaxDexterity}\n{selectedClass.Inteligence}/{selectedClass.MaxInteligence}\n{selectedClass.Vitality}/{selectedClass.MaxVitality}\n{selectedClass.Health}\n{selectedClass.Mana}\n{selectedClass.PhysicalDamage}\n{selectedClass.Armor}\n{selectedClass.MagicDamage}\n{selectedClass.MagicDefense}\n{selectedClass.CritChanse}\n{selectedClass.CritDamage}";  // Fixed typo in property name
+            selectedClass.CalculateStats();
+            HeroInfo.Text = $"Class: {selectedClass.ClassName}\nName: {selectedClass.Name}\n" +
+                $"Strength: {selectedClass.Strength} / {selectedClass.MaxStrength}" +
+                $"\nDexterity: {selectedClass.Dexterity} / {selectedClass.MaxDexterity}\n" +
+                $"Inteligence: {selectedClass.Inteligence} / {selectedClass.MaxInteligence}\n" +
+                $"Vitality: {selectedClass.Vitality}/{selectedClass.MaxVitality}\n";
+
+            HeroStats.Text = $"Health: {selectedClass.Health}\nArmor: {selectedClass.Armor}\n " +
+                $"Mana: {selectedClass.Mana}\nPhysical Damage: {selectedClass.PhysicalDamage}\n" +
+                $"Magic Damage: {selectedClass.MagicDamage}\nMagic Defense: {selectedClass.MagicDefense}\n" +
+                $"Crit Chanse: {selectedClass.CritChanse}\nCrit Damage: {selectedClass.CritDamage}";
         }
         private double GetMaxValueForTextBlock(TextBlock textBlock)
         {

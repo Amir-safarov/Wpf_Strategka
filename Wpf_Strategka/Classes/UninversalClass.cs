@@ -75,5 +75,16 @@ namespace Wpf_Strategka.Classes
         public double MagicDefense { get { return _magicDefense; } set { _magicDefense = value+ (coefficient[7] * Inteligence); } }
         public double CritChanse { get { return _critChanse; } set { _critChanse = value+ (coefficient[8] * Dexterity); } }
         public double CritDamage { get { return _critDamage; } set { _critDamage = value+ (coefficient[9] * Dexterity); } }
+        public void CalculateStats()
+        {
+            Health = coefficient[0] * Vitality + coefficient[1] * Strength;
+            Mana = coefficient[2] * Inteligence;
+            PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity;
+            Armor = coefficient[5] * Dexterity;
+            MagicDamage = coefficient[6] * Inteligence;
+            MagicDefense = coefficient[7] * Inteligence;
+            CritChanse = coefficient[8] * Dexterity;
+            CritDamage = coefficient[9] * Dexterity;
+        }
     }
 }
