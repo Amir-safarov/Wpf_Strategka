@@ -13,6 +13,10 @@
             <Setter Property="Background" Value="#006400"></Setter>
             <Setter Property="Foreground" Value="#151515"></Setter>
         </Style>
-
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Background" Value="#006400"></Setter>
+            <Setter Property="Foreground" Value="#151515"></Setter>
+        </Style>
     </Application.Resources>
 </Application>
