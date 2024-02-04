@@ -64,10 +64,11 @@
                     <Button FontSize="18" Click="DecreaseValue" Tag="{Binding ElementName=VitalityTB}">-</Button>
                 </StackPanel>
             </DockPanel>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0,150,0,0">
+            <DockPanel  VerticalAlignment="Bottom" Margin="0,150,0,0">
                 <TextBlock>Количество очков:</TextBlock>
                 <TextBlock Margin="10,0,0,0" Name="CurrentScoreTB">10</TextBlock>
-            </StackPanel>
+                <Button Width="20" HorizontalAlignment="Right" Click="Button_Click">X</Button>
+            </DockPanel>
         </StackPanel>
     </Grid>
 

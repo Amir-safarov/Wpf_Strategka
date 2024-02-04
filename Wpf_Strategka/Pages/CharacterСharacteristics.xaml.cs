@@ -120,5 +120,9 @@ namespace Wpf_Strategka.Pages
             return Math.Max(0, Math.Min(value, (int)maxValue));
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ChoosingCharactersClass());
+        }
     }
 }

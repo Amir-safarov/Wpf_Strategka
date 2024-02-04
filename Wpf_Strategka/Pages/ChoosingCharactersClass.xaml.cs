@@ -28,6 +28,7 @@ namespace Wpf_Strategka.Pages
         public ChoosingCharactersClass()
         {
             InitializeComponent();
+            selectedClass = null;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -63,6 +64,8 @@ namespace Wpf_Strategka.Pages
 
         private void NextBTN_Click(object sender, RoutedEventArgs e)
         {
+            if (selectedClass == null)
+                return;
             NavigationService.Navigate(new CharacterСharacteristics(selectedClass));
         }
     }
