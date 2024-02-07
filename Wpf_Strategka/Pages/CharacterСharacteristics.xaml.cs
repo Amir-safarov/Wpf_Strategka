@@ -161,22 +161,53 @@ namespace Wpf_Strategka.Pages
         }
         private void LevelUpCheck(int currentExp)
         {
-            List<int> levels = new List<int>{1000, 3000, 6000, 10000, 15000, 21000, 28000, 36000};
-
-            int currentLevel = int.Parse(LevelTB.Text);
-            for (int i = 0; i < levels.Count; i++)
+            if (currentExp >= 1000)
             {
-                if (currentExp >= levels[i])
-                {
-                    //currentLevel += 1;
-                    levels.Remove(i);
-                }
-                else
-                {
-                    break; 
-                }
+                LevelTB.Text = 2.ToString();
+                ScoreCountUp();
             }
-            LevelTB.Text = currentLevel.ToString();
+            if (currentExp >= 3000)
+            {
+                LevelTB.Text = 3.ToString();
+                ScoreCountUp();
+            }
+            if (currentExp >= 6000)
+            {
+                LevelTB.Text = 4.ToString();
+                ScoreCountUp();
+            }
+            if (currentExp >= 10000)
+            {
+                LevelTB.Text = 5.ToString();
+                ScoreCountUp();
+            }
+            if (currentExp >= 15000)
+            {
+                LevelTB.Text = 6.ToString();
+                ScoreCountUp();
+            }
+            if (currentExp >= 21000)
+            {
+                LevelTB.Text = 7.ToString();
+                ScoreCountUp();
+            }
+            if (currentExp >= 28000)
+            {
+                LevelTB.Text = 8.ToString();
+                ScoreCountUp();
+            }
+            if (currentExp >= 36000)
+            {
+                LevelTB.Text = 9.ToString();
+                ScoreCountUp();
+            }
+        }
+
+        private void ScoreCountUp()
+        {
+            int score = int.Parse(CurrentScoreTB.Text);
+            score += 25;
+            CurrentScoreTB.Text = score.ToString();
         }
     }
 }
