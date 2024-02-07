@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf_Strategka"
         mc:Ignorable="d"
-        Title="MainWindow" Height="750" Width="650">
+        Title="MainWindow" Height="750" Width="950">
     <Grid>
         <Frame Name="MainFrame"></Frame>
     </Grid>

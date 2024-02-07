@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Wpf_Strategka.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="600"
+      d:DesignHeight="700" d:DesignWidth="950"
       Title="CharacterСharacteristics" Background="#151515">
 
     <Grid Height="700" VerticalAlignment="Bottom">
@@ -19,17 +19,19 @@
             <ColumnDefinition Width="11*"/>
             <ColumnDefinition Width="264*"/>
             <ColumnDefinition Width="265*"/>
+            <ColumnDefinition Width="265*"/>
             <ColumnDefinition Width="11*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="1" Grid.Row="1" Background="#C0C0C0">
             <Image Name="CharacterClassIMG" />
         </StackPanel>
-        <DockPanel Grid.Column="2" Grid.Row="2" Background="#FF0D1352" Margin="10">
+        <DockPanel Grid.Column="3" Grid.Row="2" Background="#FF0D1352" Margin="10">
             <TextBlock Name="HeroInfo" TextWrapping="Wrap"  Margin="5" HorizontalAlignment="Left"></TextBlock>
             <TextBlock Name="HeroStats" TextWrapping="Wrap" Margin="5" HorizontalAlignment="Right"></TextBlock>
 
         </DockPanel>
-        <TextBlock Name="StatsInfo" TextWrapping="Wrap" Grid.Column="2" Grid.Row="1" Margin="10"></TextBlock>
+        <TextBlock Name="StatsInfo" TextWrapping="Wrap" Grid.Column="3" Grid.Row="1" Margin="10"></TextBlock>
+        <TextBlock Name="LevelInfo" TextWrapping="Wrap" Grid.Column="2" Grid.Row="1" Margin="10"></TextBlock>
 
         <StackPanel Grid.Column="1" Grid.Row="2" Margin="3">
             <DockPanel Margin="0,10,0,0" >
@@ -64,11 +66,27 @@
                     <Button FontSize="18" Click="DecreaseValue" Tag="{Binding ElementName=VitalityTB}">-</Button>
                 </StackPanel>
             </DockPanel>
-            <DockPanel  VerticalAlignment="Bottom" Margin="0,150,0,0">
+            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                <TextBlock>Текущий уровень:</TextBlock>
+                <TextBlock Margin="10,0,0,0" Name="LevelTB">1</TextBlock>
+            </StackPanel>
+            <DockPanel  VerticalAlignment="Bottom" Margin="0,100,0,0">
                 <TextBlock>Количество очков:</TextBlock>
                 <TextBlock Margin="10,0,0,0" Name="CurrentScoreTB">10</TextBlock>
                 <Button Width="20" HorizontalAlignment="Right" Click="Button_Click">X</Button>
             </DockPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="2">
+            <TextBlock HorizontalAlignment="Center">Получение опыта</TextBlock>
+            <DockPanel>
+                <Button HorizontalAlignment="Left" Name="ExpUP" Click="ExpUP_Click">100</Button>
+                <Button Margin="100,0,0,0" Click="ExpUP_Click">500</Button>
+                <Button HorizontalAlignment="Right" Click="ExpUP_Click">10000</Button>
+            </DockPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>Опыт:</TextBlock>
+                <TextBox x:Name="CurrentExp" IsReadOnly="True">0</TextBox>
+            </StackPanel>
         </StackPanel>
     </Grid>
 

@@ -4,6 +4,7 @@ namespace Wpf_Strategka.Constants
 {
     internal class ClassesInfo
     {
+        internal string levelInfo = "Level\texp total\n1\t0\n2\t1000\n3\t3000\n4\t6000\n5\t10000\n6\t15000\n7\t21000\n8\t28000\n9\t36000\n";
         internal Dictionary<string, string> statsInfo = new Dictionary<string, string>(){
             {"Warrior", "Health 2/1vit , 1/str\nMana 1/1 int\np.damage 1/str\narmor 1/dex\nm.damage 0.2/int\nm.defense 05/int\ncrt.chanse 0.2/dex\ncrt.damage 0.1/dex"},
             {"Rogue", "Health 1.5/1vit 0.5/1str\nMana 1.2/int\np.damage 0.5/str+0.5dex\narmor 1.5/dex\nm.damage 0.2/int\nm.defense 0.5/int\ncrt.chanse 0.2/dex\ncrt.damage 0.1/dex\n"},
@@ -30,5 +31,6 @@ namespace Wpf_Strategka.Constants
         internal static int[] rogueMaxStats = new int[] { 65, 250, 70, 80 };
         internal static int[] wizardCurrentStats = new int[] { 15, 20, 35, 15 };
         internal static int[] wizarMaxStats = new int[] { 45, 80, 250, 70 };
+
     }
 }
