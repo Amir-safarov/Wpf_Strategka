@@ -17,6 +17,8 @@ namespace Wpf_Strategka.Pages
     public partial class CharacterСharacteristics : Page
     {
         private UninversalClass selectedClass;
+        private UniversalWeapon universalWeapon;
+
         private ClassesInfo info = new ClassesInfo();
         int currentPoint;
         private bool isSecondLvl;
@@ -45,8 +47,7 @@ namespace Wpf_Strategka.Pages
             LevelInfo.Text = info.levelInfo;
             SetStartedValues();
             UpdateUIFromCharacteristics();
-            ShowInfo(); 
-            currentPoint = int.Parse(CurrentScoreTB.Text);
+            ShowInfo();
         }
 
         private void UpdateUIFromCharacteristics()
@@ -92,9 +93,7 @@ namespace Wpf_Strategka.Pages
                     textBlock.Text = LimitValue(value, (int)maxValue).ToString();
                     UpdateCharacteristicsFromUI();
                     if (value >= minValue)
-                    {
                         currentPoint++;
-                    }
                     CurrentScoreTB.Text = currentPoint.ToString();
                     ShowInfo();
                 }
@@ -111,7 +110,13 @@ namespace Wpf_Strategka.Pages
 
         private void ShowInfo()
         {
-            selectedClass.CalculateStats();
+            if (universalWeapon == null)
+                selectedClass.CalculateStats();
+            else
+            {
+                selectedClass.CalculateStats(universalWeapon);
+                UpdateCharacteristicsFromUI();
+            }
             HeroInfo.Text = $"Class: {selectedClass.ClassName}\nName: {selectedClass.Name}\n" +
                 $"Strength: {selectedClass.Strength} / {selectedClass.MaxStrength}" +
                 $"\nDexterity: {selectedClass.Dexterity} / {selectedClass.MaxDexterity}\n" +
@@ -240,16 +245,18 @@ namespace Wpf_Strategka.Pages
 
         private void ScoreCountUp()
         {
-            int score = int.Parse(CurrentScoreTB.Text);
-            score += 25;
-            CurrentScoreTB.Text = score.ToString();
+            currentPoint = int.Parse(CurrentScoreTB.Text);
+            currentPoint += 25;
+            CurrentScoreTB.Text = currentPoint.ToString();
         }
 
         private void WeaponCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TextBlock selectedTextBlock = (TextBlock)WeaponCB.SelectedItem;
             string selectedWeapon = selectedTextBlock.Text;
-            selectedClass.CalculateWeaponBuffs(info.weaponCoefficient[selectedWeapon]);
+            universalWeapon = info.weaponCoefficient[selectedWeapon];
+            selectedClass.CalculateStats(universalWeapon);
+            ShowInfo();
         }
     }
 }

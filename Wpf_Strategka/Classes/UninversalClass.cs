@@ -34,7 +34,7 @@ namespace Wpf_Strategka.Classes
         private double _saveVitality;
         private double _saveHealth;
         private double _saveMana;
-                        
+
         private double _savePhysicalDamage;
         private double _saveArmor;
         private double _saveMagicDamage;
@@ -42,7 +42,7 @@ namespace Wpf_Strategka.Classes
         private double _saveCritChanse;
         private double _saveCritDamage;
 
-        public UninversalClass(string className, string name, double strength, double maxStrength, double dexterity, double maxDexterity, double inteligence,double maxInteligence, double vitality, double maxVitality)
+        public UninversalClass(string className, string name, double strength, double maxStrength, double dexterity, double maxDexterity, double inteligence, double maxInteligence, double vitality, double maxVitality)
         {
             if (info.heroCoefficient.ContainsKey(className))
                 coefficient = info.heroCoefficient[className];
@@ -56,18 +56,11 @@ namespace Wpf_Strategka.Classes
             MaxInteligence = maxInteligence;
             MaxVitality = maxVitality;
             MaxDexterity = maxDexterity;
-            Health = 0;
-            Mana = 0;
-            PhysicalDamage = 0;
-            Armor = 0;
-            MagicDamage = 0;
-            MagicDefense = 0;
-            CritChanse = 0;
-            CritDamage = 0;
+            CalculateStats();
         }
         public void SaveCurrentStats()
         {
-            
+
         }
         public void ShowUnfo()
         {
@@ -84,14 +77,14 @@ namespace Wpf_Strategka.Classes
         public double Vitality { get { return _vitality; } set { _vitality = value; } }
         public double MaxVitality { get { return _maxVitality; } private set { _maxVitality = value; } }
 
-        public double Health { get { return _health; } set { _health = value + (coefficient[0]*Vitality + coefficient[1] * Strength);}}
-        public double Mana { get { return _mana; } set { _mana = value + (coefficient[2]*Inteligence); } }
-        public double PhysicalDamage { get { return _physicalDamage; } set { _physicalDamage = value + (coefficient[3] * Strength + (coefficient[4] * Dexterity)); } }
-        public double Armor { get { return _armor; } set { _armor = value+ (coefficient[5] * Dexterity); } }
-        public double MagicDamage { get { return _magicDamage; } set { _magicDamage = value + (coefficient[6] *Inteligence); } }
-        public double MagicDefense { get { return _magicDefense; } set { _magicDefense = value+ (coefficient[7] * Inteligence); } }
-        public double CritChanse { get { return _critChanse; } set { _critChanse = value+ (coefficient[8] * Dexterity); } }
-        public double CritDamage { get { return _critDamage; } set { _critDamage = value+ (coefficient[9] * Dexterity); } }
+        public double Health { get { return _health; } set { _health = value; } }
+        public double Mana { get { return _mana; } set { _mana = value; } }
+        public double PhysicalDamage { get { return _physicalDamage; } set { _physicalDamage = value; } }
+        public double Armor { get { return _armor; } set { _armor = value; } }
+        public double MagicDamage { get { return _magicDamage; } set { _magicDamage = value; } }
+        public double MagicDefense { get { return _magicDefense; } set { _magicDefense = value; } }
+        public double CritChanse { get { return _critChanse; } set { _critChanse = value; } }
+        public double CritDamage { get { return _critDamage; } set { _critDamage = value; } }
         public void CalculateStats()
         {
             Health = coefficient[0] * Vitality + coefficient[1] * Strength;
@@ -103,16 +96,31 @@ namespace Wpf_Strategka.Classes
             CritChanse = coefficient[8] * Dexterity;
             CritDamage = coefficient[9] * Dexterity;
         }
-        public void CalculateWeaponBuffs(UniversalWeapon selectedWeapon)
+        public void CalculateStats(UniversalWeapon selectedWeapon)
         {
-            Health *= selectedWeapon.HpUp;
-            Mana *= selectedWeapon.ManaUp;
-            PhysicalDamage *= selectedWeapon.PhysDmgUp;
-            Strength += selectedWeapon.StrUp;
-            Inteligence += selectedWeapon.IntlUp;
-            Dexterity += selectedWeapon.DexUp;
-            CritChanse *= selectedWeapon.CCUp;
-            CritDamage *= selectedWeapon.CDUp;
+            if (selectedWeapon.HpUp != 0)
+                Health = (coefficient[0] * Vitality + coefficient[1] * Strength) * selectedWeapon.HpUp;
+            else
+                Health = (coefficient[0] * Vitality + coefficient[1] * Strength);
+            if (selectedWeapon.IntlUp != 0)
+                Mana = (coefficient[2] * Inteligence) * selectedWeapon.IntlUp;
+            else
+                Mana = (coefficient[2] * Inteligence);
+            if (selectedWeapon.PhysDmgUp != 0)
+                PhysicalDamage = (coefficient[3] * Strength + coefficient[4] * Dexterity) * selectedWeapon.PhysDmgUp;
+            else
+                PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity;
+            Armor = coefficient[5] * Dexterity;
+            MagicDamage = coefficient[6] * Inteligence;
+            MagicDefense = coefficient[7] * Inteligence;
+            if (selectedWeapon.CCUp != 0)
+                CritChanse = (coefficient[8] * Dexterity) * selectedWeapon.CCUp;
+            else
+                CritChanse = (coefficient[8] * Dexterity);
+            if (selectedWeapon.CDUp != 0)
+                CritDamage = (coefficient[9] * Dexterity) * selectedWeapon.CDUp;
+            else
+                CritDamage = coefficient[9] * Dexterity;
         }
     }
 }

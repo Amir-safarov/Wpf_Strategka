@@ -39,9 +39,9 @@ namespace Wpf_Strategka.Classes
         public string WeaponName { get { return _weaponName; } set { _weaponName = value; } }
         public double HpUp {  get { return _hpUp; } set {  _hpUp = value; } }
         public double ManaUp {  get { return _manaUp; } set { _manaUp = value; } }
-        public double StrUp {  get { return _strUp; } set { _strUp = value; } }
-        public double DexUp {  get { return _dexUp; } set {  _dexUp = value; } }
-        public double IntlUp {  get { return _intlUp; } set {  _intlUp = value; } }
+        public int StrUp {  get { return _strUp; } set { _strUp = value; } }
+        public int DexUp {  get { return _dexUp; } set {  _dexUp = value; } }
+        public int IntlUp {  get { return _intlUp; } set {  _intlUp = value; } }
         public double PhysDmgUp {  get { return _physDmgUp; } set { _physDmgUp = value; } }
         public double CCUp {  get { return _ccUp; } set {  _ccUp = value; } }
         public double CDUp {  get { return _cdUp; } set {  _cdUp = value; } }

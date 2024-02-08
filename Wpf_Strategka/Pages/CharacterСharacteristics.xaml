@@ -5,14 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Wpf_Strategka.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="950"
+      d:DesignHeight="850" d:DesignWidth="950"
       Title="CharacterСharacteristics" Background="#151515">
 
-    <Grid Height="700" VerticalAlignment="Bottom">
+    <Grid Height="850" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="25*"/>
-            <RowDefinition Height="25*"/>
+            <RowDefinition Height="35*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -72,7 +72,7 @@
             </StackPanel>
             <DockPanel  VerticalAlignment="Bottom" Margin="0,100,0,0">
                 <TextBlock>Количество очков:</TextBlock>
-                <TextBlock Margin="10,0,0,0" Name="CurrentScoreTB">10</TextBlock>
+                <TextBlock Margin="10,0,0,0" Name="CurrentScoreTB">0</TextBlock>
                 <Button Width="20" HorizontalAlignment="Right" Click="Button_Click">X</Button>
             </DockPanel>
         </StackPanel>
