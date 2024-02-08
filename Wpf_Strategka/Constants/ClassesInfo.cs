@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Wpf_Strategka.Classes;
 
 namespace Wpf_Strategka.Constants
 {
@@ -24,6 +25,11 @@ namespace Wpf_Strategka.Constants
             {"Warrior", new double[]{2,1,1,1,0,1,0.2,0.5,0.2,0.1}},
             {"Rogue", new double[]{1.5,0.5,1.2,0.5, 0.5, 1.5,0.2,0.5,0.2,0.1}},
             {"Wizard", new double[]{1.4,0.2,1.5, 0.5, 0,1,1,1,0.2, 0.1}},
+        };
+        //Mults: hp, mana, strenght, intelegense, dexterity, 
+        internal Dictionary<string, UniversalWeapon> weaponCoefficient = new Dictionary<string, UniversalWeapon>()
+        {
+            {"Palka", new UniversalWeapon("Palka", 0, )}
         };
         internal static int[] warriorCurrentStats = new int[] { 30, 15, 10, 25 };
         internal static int[] warriorMaxStats = new int[] { 250, 80, 50, 100 };

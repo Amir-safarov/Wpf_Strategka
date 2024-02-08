@@ -19,6 +19,20 @@ namespace Wpf_Strategka.Pages
         private UninversalClass selectedClass;
         private ClassesInfo info = new ClassesInfo();
         int currentPoint;
+        private bool isSecondLvl;
+        private bool isThirdLvl;
+        private bool isFourthLvl;
+        private bool isFifthLvl;
+        private bool isSixthLvl;
+        private bool isSeventhLvl;
+        private bool isEighthLvl;
+        private bool isNinthLvl;
+
+        private double startedStr;
+        private double startedDex;
+        private double startedIntl;
+        private double startedVit;
+
         public CharacterСharacteristics(UninversalClass uninversalClass)
         {
             InitializeComponent();
@@ -29,8 +43,9 @@ namespace Wpf_Strategka.Pages
             CharacterClassIMG.Source = imageSource;
             StatsInfo.Text = info.statsInfo[selectedClass.ClassName];
             LevelInfo.Text = info.levelInfo;
+            SetStartedValues();
             UpdateUIFromCharacteristics();
-            ShowInfo();  // Fixed typo in the method name
+            ShowInfo(); 
             currentPoint = int.Parse(CurrentScoreTB.Text);
         }
 
@@ -71,13 +86,18 @@ namespace Wpf_Strategka.Pages
 
             if (int.TryParse(textBlock.Text, out int value))
             {
-                if (value > 0)
-                    currentPoint++;
-                value--;
-                textBlock.Text = LimitValue(value, (int)maxValue).ToString();
-                UpdateCharacteristicsFromUI();
-                CurrentScoreTB.Text = currentPoint.ToString();
-                ShowInfo();
+                if (value > minValue)
+                {
+                    value--;
+                    textBlock.Text = LimitValue(value, (int)maxValue).ToString();
+                    UpdateCharacteristicsFromUI();
+                    if (value >= minValue)
+                    {
+                        currentPoint++;
+                    }
+                    CurrentScoreTB.Text = currentPoint.ToString();
+                    ShowInfo();
+                }
             }
         }
 
@@ -103,6 +123,13 @@ namespace Wpf_Strategka.Pages
                 $"Magic Damage: {selectedClass.MagicDamage}\nMagic Defense: {selectedClass.MagicDefense}\n" +
                 $"Crit Chanse: {selectedClass.CritChanse}\nCrit Damage: {selectedClass.CritDamage}";
         }
+        private void SetStartedValues()
+        {
+            startedStr = selectedClass.Strength;
+            startedIntl = selectedClass.Inteligence;
+            startedDex = selectedClass.Dexterity;
+            startedVit = selectedClass.Vitality;
+        }
         private double GetMaxValueForTextBlock(TextBlock textBlock)
         {
             switch (textBlock.Name)
@@ -125,13 +152,13 @@ namespace Wpf_Strategka.Pages
             switch (textBlock.Name)
             {
                 case "StrengthTB":
-                    return selectedClass.Strength;
+                    return startedStr;
                 case "DexterityTB":
-                    return selectedClass.Dexterity;
+                    return startedDex;
                 case "InteligenceTB":
-                    return selectedClass.Inteligence;
+                    return startedIntl;
                 case "VitalityTB":
-                    return selectedClass.Vitality;
+                    return startedVit;
                 default:
                     return 0;
             }
@@ -161,45 +188,53 @@ namespace Wpf_Strategka.Pages
         }
         private void LevelUpCheck(int currentExp)
         {
-            if (currentExp >= 1000)
+            if (currentExp >= 1000 && !isSecondLvl)
             {
                 LevelTB.Text = 2.ToString();
                 ScoreCountUp();
+                isSecondLvl = true;
             }
-            if (currentExp >= 3000)
+            if (currentExp >= 3000 && !isThirdLvl)
             {
                 LevelTB.Text = 3.ToString();
                 ScoreCountUp();
+                isThirdLvl = true;
             }
-            if (currentExp >= 6000)
+            if (currentExp >= 6000 && !isFourthLvl)
             {
                 LevelTB.Text = 4.ToString();
                 ScoreCountUp();
+                isFourthLvl = true;
             }
-            if (currentExp >= 10000)
+            if (currentExp >= 10000 && !isFifthLvl)
             {
                 LevelTB.Text = 5.ToString();
                 ScoreCountUp();
+                isFifthLvl = true;
             }
-            if (currentExp >= 15000)
+            if (currentExp >= 15000 && !isSixthLvl)
             {
                 LevelTB.Text = 6.ToString();
                 ScoreCountUp();
+                isSixthLvl = true;
             }
-            if (currentExp >= 21000)
+            if (currentExp >= 21000 && !isSeventhLvl)
             {
                 LevelTB.Text = 7.ToString();
                 ScoreCountUp();
+                isSeventhLvl = true;
             }
-            if (currentExp >= 28000)
+            if (currentExp >= 28000 && !isEighthLvl)
             {
                 LevelTB.Text = 8.ToString();
                 ScoreCountUp();
+                isEighthLvl = true;
             }
-            if (currentExp >= 36000)
+            if (currentExp >= 36000 && !isNinthLvl)
             {
                 LevelTB.Text = 9.ToString();
                 ScoreCountUp();
+                isNinthLvl = true;
             }
         }
 
