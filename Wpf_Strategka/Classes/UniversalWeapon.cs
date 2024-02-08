@@ -17,23 +17,23 @@ namespace Wpf_Strategka.Classes
         private string _weaponName;
         private double _hpUp;
         private double _manaUp;
-        private double _strUp;
-        private double _dexUp;
-        private double _intlUp;
+        private int _strUp;
+        private int _dexUp;
+        private int _intlUp;
         private double _physDmgUp;
         private double _ccUp;
         private double _cdUp;
-        public UniversalWeapon(string weaponName,double hpUp, double manaUp, double strUp, double dexUp, double intlUp, double physDmgUp, double ccUp, double cdUp)
+        public UniversalWeapon(string weaponName, double physDmgUp, double manaUp, int intlUp, double ccUp, double cdUp, int strUp, int dexUp, double hpUp)
         {
             WeaponName = weaponName;
-            HpUp = hpUp;
-            ManaUp = manaUp;
-            StrUp = strUp;
-            DexUp = dexUp;
-            IntlUp = intlUp;
             PhysDmgUp = physDmgUp;
+            ManaUp = manaUp;
+            IntlUp = intlUp;
             CCUp = ccUp;
             CDUp = cdUp;
+            StrUp = strUp;
+            DexUp = dexUp;
+            HpUp = hpUp;
         }
 
         public string WeaponName { get { return _weaponName; } set { _weaponName = value; } }

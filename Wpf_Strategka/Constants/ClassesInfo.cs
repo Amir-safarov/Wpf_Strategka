@@ -26,10 +26,14 @@ namespace Wpf_Strategka.Constants
             {"Rogue", new double[]{1.5,0.5,1.2,0.5, 0.5, 1.5,0.2,0.5,0.2,0.1}},
             {"Wizard", new double[]{1.4,0.2,1.5, 0.5, 0,1,1,1,0.2, 0.1}},
         };
-        //Mults: hp, mana, strenght, intelegense, dexterity, 
+        //name; Mults: damage, mana, intl, cc, cd, str, dex, hp
         internal Dictionary<string, UniversalWeapon> weaponCoefficient = new Dictionary<string, UniversalWeapon>()
         {
-            {"Palka", new UniversalWeapon("Palka", 0, )}
+            {"Palka", new UniversalWeapon("Palka", 1.05, 1.15, 2, 1.05,3,0,0,0)},
+            {"Dagger", new UniversalWeapon("Dagger", 1.1, 0, 0, 1.6,0.7,0,2,0)},
+            {"Sword", new UniversalWeapon("Sword", 1.15, 0, 0, 1.35,1.5,2,1,0)},
+            {"Axe", new UniversalWeapon("Axe", 1.2, 0, 0, 1.2,1.7,2,0,0)},
+            {"Hammer", new UniversalWeapon("Hammer", 1.2, 0, 0, 1.1,2.5,2,0,1.15)},
         };
         internal static int[] warriorCurrentStats = new int[] { 30, 15, 10, 25 };
         internal static int[] warriorMaxStats = new int[] { 250, 80, 50, 100 };

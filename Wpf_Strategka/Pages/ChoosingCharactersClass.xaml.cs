@@ -56,8 +56,8 @@ namespace Wpf_Strategka.Pages
                     string imagePath = info.heroImages[selectedClass.ClassName];
                     ImageSource imageSource = new BitmapImage(new Uri(imagePath, UriKind.Relative));
                     ClassImg.Source = imageSource;
-
                 }
+                ChosingNameSP.Visibility = Visibility.Visible;
             }
 
         }

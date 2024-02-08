@@ -89,7 +89,7 @@
             </StackPanel>
             <StackPanel Orientation="Vertical">
                 <TextBlock>Оружие:</TextBlock>
-                <ComboBox Name="WeaponCB">
+                <ComboBox Name="WeaponCB" SelectionChanged="WeaponCB_SelectionChanged">
                     <TextBlock>Palka</TextBlock>
                     <TextBlock>Dagger</TextBlock>
                     <TextBlock>Sword</TextBlock>

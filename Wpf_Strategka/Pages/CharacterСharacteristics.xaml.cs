@@ -244,5 +244,12 @@ namespace Wpf_Strategka.Pages
             score += 25;
             CurrentScoreTB.Text = score.ToString();
         }
+
+        private void WeaponCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TextBlock selectedTextBlock = (TextBlock)WeaponCB.SelectedItem;
+            string selectedWeapon = selectedTextBlock.Text;
+            selectedClass.CalculateWeaponBuffs(info.weaponCoefficient[selectedWeapon]);
+        }
     }
 }

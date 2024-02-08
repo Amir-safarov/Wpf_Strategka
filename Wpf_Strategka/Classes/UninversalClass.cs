@@ -28,6 +28,20 @@ namespace Wpf_Strategka.Classes
         private double _critChanse;
         private double _critDamage;
 
+        private double _saveStrength;
+        private double _saveDexterity;
+        private double _saveInteligence;
+        private double _saveVitality;
+        private double _saveHealth;
+        private double _saveMana;
+                        
+        private double _savePhysicalDamage;
+        private double _saveArmor;
+        private double _saveMagicDamage;
+        private double _saveMagicDefense;
+        private double _saveCritChanse;
+        private double _saveCritDamage;
+
         public UninversalClass(string className, string name, double strength, double maxStrength, double dexterity, double maxDexterity, double inteligence,double maxInteligence, double vitality, double maxVitality)
         {
             if (info.heroCoefficient.ContainsKey(className))
@@ -51,7 +65,10 @@ namespace Wpf_Strategka.Classes
             CritChanse = 0;
             CritDamage = 0;
         }
-
+        public void SaveCurrentStats()
+        {
+            
+        }
         public void ShowUnfo()
         {
             MessageBox.Show($"{ClassName}\n{Name}\n{Strength}\n{Dexterity}\n{Inteligence}\n{Vitality}\n{Health}\n{Mana}\n");
@@ -85,6 +102,17 @@ namespace Wpf_Strategka.Classes
             MagicDefense = coefficient[7] * Inteligence;
             CritChanse = coefficient[8] * Dexterity;
             CritDamage = coefficient[9] * Dexterity;
+        }
+        public void CalculateWeaponBuffs(UniversalWeapon selectedWeapon)
+        {
+            Health *= selectedWeapon.HpUp;
+            Mana *= selectedWeapon.ManaUp;
+            PhysicalDamage *= selectedWeapon.PhysDmgUp;
+            Strength += selectedWeapon.StrUp;
+            Inteligence += selectedWeapon.IntlUp;
+            Dexterity += selectedWeapon.DexUp;
+            CritChanse *= selectedWeapon.CCUp;
+            CritDamage *= selectedWeapon.CDUp;
         }
     }
 }
