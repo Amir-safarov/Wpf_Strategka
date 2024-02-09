@@ -1,11 +1,13 @@
 ﻿using System.Windows;
 using Wpf_Strategka.Constants;
+using Wpf_Strategka.Pages;
 
 namespace Wpf_Strategka.Classes
 {
     public partial class UninversalClass
     {
         ClassesInfo info = new ClassesInfo();
+
         private double[] coefficient;
         private string _className;
         private string _name;
@@ -98,29 +100,39 @@ namespace Wpf_Strategka.Classes
         }
         public void CalculateStats(UniversalWeapon selectedWeapon)
         {
-            if (selectedWeapon.HpUp != 0)
-                Health = (coefficient[0] * Vitality + coefficient[1] * Strength) * selectedWeapon.HpUp;
+
+            if (selectedWeapon.WeaponName == "Palka" && App.uninversalClass.ClassName == "Wizard")
+            {
+                    CritChanse = (coefficient[8] * Dexterity) * 1.05;
+                    CritDamage = (coefficient[9] * Dexterity) * 3;
+            }
             else
-                Health = (coefficient[0] * Vitality + coefficient[1] * Strength);
-            if (selectedWeapon.IntlUp != 0)
-                Mana = (coefficient[2] * Inteligence) * selectedWeapon.IntlUp;
-            else
-                Mana = (coefficient[2] * Inteligence);
-            if (selectedWeapon.PhysDmgUp != 0)
-                PhysicalDamage = (coefficient[3] * Strength + coefficient[4] * Dexterity) * selectedWeapon.PhysDmgUp;
-            else
-                PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity;
-            Armor = coefficient[5] * Dexterity;
-            MagicDamage = coefficient[6] * Inteligence;
-            MagicDefense = coefficient[7] * Inteligence;
-            if (selectedWeapon.CCUp != 0)
-                CritChanse = (coefficient[8] * Dexterity) * selectedWeapon.CCUp;
-            else
-                CritChanse = (coefficient[8] * Dexterity);
-            if (selectedWeapon.CDUp != 0)
-                CritDamage = (coefficient[9] * Dexterity) * selectedWeapon.CDUp;
-            else
-                CritDamage = coefficient[9] * Dexterity;
+            {
+                
+                if (selectedWeapon.HpUp != 0)
+                    Health = (coefficient[0] * Vitality + coefficient[1] * Strength) * selectedWeapon.HpUp;
+                else
+                    Health = (coefficient[0] * Vitality + coefficient[1] * Strength);
+                if (selectedWeapon.IntlUp != 0)
+                    Mana = (coefficient[2] * Inteligence) * selectedWeapon.IntlUp;
+                else
+                    Mana = (coefficient[2] * Inteligence);
+                if (selectedWeapon.PhysDmgUp != 0)
+                    PhysicalDamage = (coefficient[3] * Strength + coefficient[4] * Dexterity) * selectedWeapon.PhysDmgUp;
+                else
+                    PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity;
+                Armor = coefficient[5] * Dexterity;
+                MagicDamage = coefficient[6] * Inteligence;
+                MagicDefense = coefficient[7] * Inteligence;
+                if (selectedWeapon.CCUp != 0)
+                    CritChanse = (coefficient[8] * Dexterity) * selectedWeapon.CCUp;
+                else
+                    CritChanse = (coefficient[8] * Dexterity);
+                if (selectedWeapon.CDUp != 0)
+                    CritDamage = (coefficient[9] * Dexterity) * selectedWeapon.CDUp;
+                else
+                    CritDamage = coefficient[9] * Dexterity;
+            }
         }
     }
 }

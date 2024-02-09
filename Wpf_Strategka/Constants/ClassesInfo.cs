@@ -29,7 +29,7 @@ namespace Wpf_Strategka.Constants
         //name; Mults: damage, mana, intl, cc, cd, str, dex, hp
         internal Dictionary<string, UniversalWeapon> weaponCoefficient = new Dictionary<string, UniversalWeapon>()
         {
-            {"Palka", new UniversalWeapon("Palka", 1.05, 1.15, 2, 1.05,3,0,0,0)},
+            {"Palka", new UniversalWeapon("Palka", 1.05, 1.15, 2, 1.05,0,0,0,0)},
             {"Dagger", new UniversalWeapon("Dagger", 1.1, 0, 0, 1.6,0.7,0,2,0)},
             {"Sword", new UniversalWeapon("Sword", 1.15, 0, 0, 1.35,1.5,2,1,0)},
             {"Axe", new UniversalWeapon("Axe", 1.2, 0, 0, 1.2,1.7,2,0,0)},

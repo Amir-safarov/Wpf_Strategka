@@ -40,6 +40,7 @@ namespace Wpf_Strategka.Pages
             InitializeComponent();
 
             selectedClass = uninversalClass;
+            App.uninversalClass = uninversalClass;
             string imagePath = info.heroImages[selectedClass.ClassName];
             ImageSource imageSource = new BitmapImage(new Uri(imagePath, UriKind.Relative));
             CharacterClassIMG.Source = imageSource;
@@ -257,6 +258,27 @@ namespace Wpf_Strategka.Pages
             universalWeapon = info.weaponCoefficient[selectedWeapon];
             selectedClass.CalculateStats(universalWeapon);
             ShowInfo();
+        }
+
+        public void TwoHandedOn()
+        {
+            TwoHeaden.IsChecked = true;
+        }
+        public void TwoHandedOff()
+        {
+            TwoHeaden.IsChecked = false;
+        }
+        public void TwoWeaponOn()
+        {
+            TwoHeaden.IsChecked = true;
+        }
+        public void TwoWeaponOff()
+        {
+            TwoHeaden.IsChecked = false;
+        }
+        public void SheildOn()
+        {
+            Shield.IsChecked = true;
         }
     }
 }
