@@ -111,13 +111,7 @@ namespace Wpf_Strategka.Pages
 
         private void ShowInfo()
         {
-            if (universalWeapon == null)
-                selectedClass.CalculateStats();
-            else
-            {
-                selectedClass.CalculateStats(universalWeapon);
-                UpdateCharacteristicsFromUI();
-            }
+            UpdateCharacteristicsFromUI();
             HeroInfo.Text = $"Class: {selectedClass.ClassName}\nName: {selectedClass.Name}\n" +
                 $"Strength: {selectedClass.Strength} / {selectedClass.MaxStrength}" +
                 $"\nDexterity: {selectedClass.Dexterity} / {selectedClass.MaxDexterity}\n" +
@@ -128,6 +122,8 @@ namespace Wpf_Strategka.Pages
                 $"Mana: {selectedClass.Mana}\nPhysical Damage: {selectedClass.PhysicalDamage}\n" +
                 $"Magic Damage: {selectedClass.MagicDamage}\nMagic Defense: {selectedClass.MagicDefense}\n" +
                 $"Crit Chanse: {selectedClass.CritChanse}\nCrit Damage: {selectedClass.CritDamage}";
+            MessageBox.Show($"{selectedClass.Armor}");
+
         }
         private void SetStartedValues()
         {
@@ -263,49 +259,41 @@ namespace Wpf_Strategka.Pages
 
         private void SetWeaponType(UniversalWeapon selectedWeapon)
         {
+            DropCheckBoxValues();
             if (selectedWeapon.WeaponName == "Palka" || selectedWeapon.WeaponName == "Sword"
-                || selectedWeapon.WeaponName == "Axe"|| selectedWeapon.WeaponName == "Hammer")
+                || selectedWeapon.WeaponName == "Axe" || selectedWeapon.WeaponName == "Hammer")
             {
-                TwoHandedOn();
-                TwoWeaponOff();
+                TwoHeaden.IsEnabled = true;
+                Shield.IsEnabled = true;
+                TwoWeapon.IsEnabled = false;
             }
-            if(selectedWeapon.WeaponName == "Dagger")
+            if (selectedWeapon.WeaponName == "Dagger")
             {
-                TwoHandedOff();
-                TwoWeaponOn();
+                TwoHeaden.IsEnabled = false;
+                Shield.IsEnabled = false;
+                TwoWeapon.IsEnabled = true;
             }
         }
-        public void TwoHandedOn()
-        {
-            TwoHeaden.IsEnabled= true;
-        }
-        public void TwoHandedOff()
+
+        private void DropCheckBoxValues()
         {
             TwoHeaden.IsChecked = false;
-            TwoHeaden.IsEnabled = false;
-        }
-        public void TwoWeaponOn()
-        {
-            TwoWeapon.IsChecked = true;
-            TwoWeapon.IsEnabled = true;
-        }
-        public void TwoWeaponOff()
-        {
+            Shield.IsChecked = false;
             TwoWeapon.IsChecked = false;
-            TwoWeapon.IsEnabled = false;
-        }
-        public void SheildOn()
-        {
-            Shield.IsEnabled = true;
-        }
-        public void SheildOff()
-        {
-            Shield.IsEnabled = false ;
         }
 
         private void TwoHeaden_Checked(object sender, RoutedEventArgs e)
         {
-            SheildOff();
+            Shield.IsChecked = false;
+            selectedClass.CalculateStats(universalWeapon, false, true);
+            ShowInfo();
+        }
+
+        private void Shield_Checked(object sender, RoutedEventArgs e)
+        {
+            TwoHeaden.IsChecked = false;
+            selectedClass.CalculateStats(universalWeapon, true, false);
+            ShowInfo();
         }
     }
 }

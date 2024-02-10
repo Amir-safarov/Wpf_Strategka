@@ -100,8 +100,8 @@
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Vertical">
                     <CheckBox x:Name="TwoWeapon" IsThreeState="False" IsChecked="False" IsEnabled="False" Height="20" Content="В двух руках" />
-                    <CheckBox x:Name="Shield" IsThreeState="False" IsChecked="False" Height="20" Content="Щит" />
-                    <CheckBox x:Name="TwoHeaden" IsThreeState="False" IsChecked="False" Height="20" Content="Двуручное оружие" Checked="TwoHeaden_Checked" />
+                    <CheckBox x:Name="Shield" IsThreeState="False" IsChecked="False" IsEnabled="False" Height="20" Content="Щит" Checked="Shield_Checked" />
+                    <CheckBox x:Name="TwoHeaden" IsThreeState="False" IsChecked="False" IsEnabled="False" Height="20" Content="Двуручное оружие" Checked="TwoHeaden_Checked"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
