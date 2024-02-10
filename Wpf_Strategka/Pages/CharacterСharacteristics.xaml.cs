@@ -257,28 +257,55 @@ namespace Wpf_Strategka.Pages
             string selectedWeapon = selectedTextBlock.Text;
             universalWeapon = info.weaponCoefficient[selectedWeapon];
             selectedClass.CalculateStats(universalWeapon);
+            SetWeaponType(universalWeapon);
             ShowInfo();
         }
 
+        private void SetWeaponType(UniversalWeapon selectedWeapon)
+        {
+            if (selectedWeapon.WeaponName == "Palka" || selectedWeapon.WeaponName == "Sword"
+                || selectedWeapon.WeaponName == "Axe"|| selectedWeapon.WeaponName == "Hammer")
+            {
+                TwoHandedOn();
+                TwoWeaponOff();
+            }
+            if(selectedWeapon.WeaponName == "Dagger")
+            {
+                TwoHandedOff();
+                TwoWeaponOn();
+            }
+        }
         public void TwoHandedOn()
         {
-            TwoHeaden.IsChecked = true;
+            TwoHeaden.IsEnabled= true;
         }
         public void TwoHandedOff()
         {
             TwoHeaden.IsChecked = false;
+            TwoHeaden.IsEnabled = false;
         }
         public void TwoWeaponOn()
         {
-            TwoHeaden.IsChecked = true;
+            TwoWeapon.IsChecked = true;
+            TwoWeapon.IsEnabled = true;
         }
         public void TwoWeaponOff()
         {
-            TwoHeaden.IsChecked = false;
+            TwoWeapon.IsChecked = false;
+            TwoWeapon.IsEnabled = false;
         }
         public void SheildOn()
         {
-            Shield.IsChecked = true;
+            Shield.IsEnabled = true;
+        }
+        public void SheildOff()
+        {
+            Shield.IsEnabled = false ;
+        }
+
+        private void TwoHeaden_Checked(object sender, RoutedEventArgs e)
+        {
+            SheildOff();
         }
     }
 }
