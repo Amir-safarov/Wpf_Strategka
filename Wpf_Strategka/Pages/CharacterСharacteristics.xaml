@@ -88,7 +88,7 @@
                 <TextBox x:Name="CurrentExp" IsReadOnly="True">0</TextBox>
             </StackPanel>
             <StackPanel Orientation="Vertical">
-                <TextBlock>Оружие:</TextBlock>
+                <TextBlock Name="WeaponRarityTB">Оружие:</TextBlock>
                 <ComboBox Name="WeaponCB" SelectionChanged="WeaponCB_SelectionChanged">
                     <TextBlock>Palka</TextBlock>
                     <TextBlock>Dagger</TextBlock>

@@ -21,6 +21,7 @@ namespace Wpf_Strategka.Pages
 
         private ClassesInfo info = new ClassesInfo();
         int currentPoint;
+        int currentPointWithoutWeaponRarity;
         private bool isSecondLvl;
         private bool isThirdLvl;
         private bool isFourthLvl;
@@ -73,7 +74,8 @@ namespace Wpf_Strategka.Pages
                     textBlock.Text = LimitValue(value, (int)maxValue).ToString();
                     UpdateCharacteristicsFromUI();
                     currentPoint--;
-                    CurrentScoreTB.Text = currentPoint.ToString();
+                    currentPointWithoutWeaponRarity = currentPoint;
+                    CurrentScoreTB.Text = currentPointWithoutWeaponRarity.ToString();
                     ShowInfo();
                 }
             }
@@ -95,7 +97,8 @@ namespace Wpf_Strategka.Pages
                     UpdateCharacteristicsFromUI();
                     if (value >= minValue)
                         currentPoint++;
-                    CurrentScoreTB.Text = currentPoint.ToString();
+                    currentPointWithoutWeaponRarity = currentPoint;
+                    CurrentScoreTB.Text = currentPointWithoutWeaponRarity.ToString();
                     ShowInfo();
                 }
             }
@@ -122,8 +125,6 @@ namespace Wpf_Strategka.Pages
                 $"Mana: {selectedClass.Mana}\nPhysical Damage: {selectedClass.PhysicalDamage}\n" +
                 $"Magic Damage: {selectedClass.MagicDamage}\nMagic Defense: {selectedClass.MagicDefense}\n" +
                 $"Crit Chanse: {selectedClass.CritChanse}\nCrit Damage: {selectedClass.CritDamage}";
-            MessageBox.Show($"{selectedClass.Armor}");
-
         }
         private void SetStartedValues()
         {
@@ -244,7 +245,8 @@ namespace Wpf_Strategka.Pages
         {
             currentPoint = int.Parse(CurrentScoreTB.Text);
             currentPoint += 25;
-            CurrentScoreTB.Text = currentPoint.ToString();
+            currentPointWithoutWeaponRarity = currentPoint;
+            CurrentScoreTB.Text = currentPointWithoutWeaponRarity.ToString();
         }
 
         private void WeaponCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -254,9 +256,20 @@ namespace Wpf_Strategka.Pages
             universalWeapon = info.weaponCoefficient[selectedWeapon];
             selectedClass.CalculateStats(universalWeapon);
             SetWeaponType(universalWeapon);
+            GetWeaponRatirty();
+            WeaponRarityTB.Text = $"Оружие: ({universalWeapon.WeaponRarity})";
             ShowInfo();
         }
-
+        private void GetWeaponRatirty()
+        {
+            currentPoint = currentPointWithoutWeaponRarity;
+            currentPointWithoutWeaponRarity = currentPoint;
+            if (universalWeapon.WeaponRarity == WeaponRarity.Rare)
+                currentPoint += 2;
+            if(universalWeapon.WeaponRarity == WeaponRarity.Epic)
+                currentPoint += 3;
+            CurrentScoreTB.Text = currentPoint.ToString();
+        }
         private void SetWeaponType(UniversalWeapon selectedWeapon)
         {
             DropCheckBoxValues();

@@ -104,6 +104,21 @@ namespace Wpf_Strategka.Classes
             {
                 if (selectedWeapon.WeaponName == "Palka" && App.uninversalClass.ClassName == "Wizard")
                 {
+                    if (selectedWeapon.HpUp != 0)
+                        Health = (coefficient[0] * Vitality + coefficient[1] * Strength) * selectedWeapon.HpUp;
+                    else
+                        Health = (coefficient[0] * Vitality + coefficient[1] * Strength);
+                    if (selectedWeapon.IntlUp != 0)
+                        Mana = (coefficient[2] * Inteligence) * selectedWeapon.IntlUp;
+                    else
+                        Mana = (coefficient[2] * Inteligence);
+                    if (selectedWeapon.PhysDmgUp != 0)
+                        PhysicalDamage = (coefficient[3] * Strength + coefficient[4] * Dexterity) * selectedWeapon.PhysDmgUp;
+                    else
+                        PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity;
+                    Armor = coefficient[5] * Dexterity + 15;
+                    MagicDamage = coefficient[6] * Inteligence;
+                    MagicDefense = coefficient[7] * Inteligence;
                     CritChanse = (coefficient[8] * Dexterity) * 1.05;
                     CritDamage = (coefficient[9] * Dexterity) * 3;
                 }
