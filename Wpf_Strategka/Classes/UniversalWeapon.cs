@@ -23,12 +23,10 @@ namespace Wpf_Strategka.Classes
         private double _physDmgUp;
         private double _ccUp;
         private double _cdUp;
-        private WeaponRarity _weaponRarity;
-        public UniversalWeapon(string weaponName,WeaponRarity rarity, double physDmgUp, double manaUp, int intlUp, double ccUp, double cdUp, int strUp, int dexUp, double hpUp)
+        public UniversalWeapon(string weaponName, double physDmgUp, double manaUp, int intlUp, double ccUp, double cdUp, int strUp, int dexUp, double hpUp)
         {
             WeaponName = weaponName;
             PhysDmgUp = physDmgUp;
-            _weaponRarity = rarity;
             ManaUp = manaUp;
             IntlUp = intlUp;
             CCUp = ccUp;
@@ -40,7 +38,6 @@ namespace Wpf_Strategka.Classes
 
         public string WeaponName { get { return _weaponName; } set { _weaponName = value; } }
         public double HpUp {  get { return _hpUp; } set {  _hpUp = value; } }
-        public WeaponRarity WeaponRarity {  get { return _weaponRarity; } set { _weaponRarity = value; } }
         public double ManaUp {  get { return _manaUp; } set { _manaUp = value; } }
         public int StrUp {  get { return _strUp; } set { _strUp = value; } }
         public int DexUp {  get { return _dexUp; } set {  _dexUp = value; } }

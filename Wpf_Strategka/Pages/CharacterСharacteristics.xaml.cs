@@ -47,6 +47,7 @@ namespace Wpf_Strategka.Pages
             CharacterClassIMG.Source = imageSource;
             StatsInfo.Text = info.statsInfo[selectedClass.ClassName];
             LevelInfo.Text = info.levelInfo;
+            CommonRarity.IsChecked = true;
             SetStartedValues();
             UpdateUIFromCharacteristics();
             ShowInfo();
@@ -256,19 +257,8 @@ namespace Wpf_Strategka.Pages
             universalWeapon = info.weaponCoefficient[selectedWeapon];
             selectedClass.CalculateStats(universalWeapon);
             SetWeaponType(universalWeapon);
-            GetWeaponRatirty();
-            WeaponRarityTB.Text = $"Оружие: ({universalWeapon.WeaponRarity})";
+            WeaponRarityTB.Text = $"Оружие: ({App.weaponRare})";
             ShowInfo();
-        }
-        private void GetWeaponRatirty()
-        {
-            currentPoint = currentPointWithoutWeaponRarity;
-            currentPointWithoutWeaponRarity = currentPoint;
-            if (universalWeapon.WeaponRarity == WeaponRarity.Rare)
-                currentPoint += 2;
-            if(universalWeapon.WeaponRarity == WeaponRarity.Epic)
-                currentPoint += 3;
-            CurrentScoreTB.Text = currentPoint.ToString();
         }
         private void SetWeaponType(UniversalWeapon selectedWeapon)
         {
@@ -305,6 +295,28 @@ namespace Wpf_Strategka.Pages
         private void Shield_Checked(object sender, RoutedEventArgs e)
         {
             TwoHeaden.IsChecked = false;
+            selectedClass.CalculateStats(universalWeapon, true, false);
+            ShowInfo();
+        }
+
+        private void CommonRarity_Checked(object sender, RoutedEventArgs e)
+        {
+            App.weaponRare = WeaponRarity.Common;
+        }
+
+        private void RareRarity_Checked(object sender, RoutedEventArgs e)
+        {
+            App.weaponRare = WeaponRarity.Rare;
+        }
+
+        private void EpicRarity_Checked(object sender, RoutedEventArgs e)
+        {
+            App.weaponRare = WeaponRarity.Epic;
+        }
+
+        private void TwoWeapon_Checked(object sender, RoutedEventArgs e)
+        {
+            Shield.IsChecked = false;
             selectedClass.CalculateStats(universalWeapon, true, false);
             ShowInfo();
         }

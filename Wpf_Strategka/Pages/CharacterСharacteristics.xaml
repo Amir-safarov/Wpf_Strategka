@@ -97,12 +97,18 @@
                     <TextBlock>Hammer</TextBlock>
                 </ComboBox>
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Vertical">
-                    <CheckBox x:Name="TwoWeapon" IsThreeState="False" IsChecked="False" IsEnabled="False" Height="20" Content="В двух руках" />
+                    <CheckBox x:Name="TwoWeapon" IsThreeState="False" IsChecked="False" IsEnabled="False" Height="20" Content="В двух руках" Checked="TwoWeapon_Checked" />
                     <CheckBox x:Name="Shield" IsThreeState="False" IsChecked="False" IsEnabled="False" Height="20" Content="Щит" Checked="Shield_Checked" />
                     <CheckBox x:Name="TwoHeaden" IsThreeState="False" IsChecked="False" IsEnabled="False" Height="20" Content="Двуручное оружие" Checked="TwoHeaden_Checked"/>
                 </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <RadioButton x:Name="CommonRarity" Checked="CommonRarity_Checked">Обычное</RadioButton>
+                    <RadioButton x:Name="RareRarity" Checked="RareRarity_Checked">Редкое</RadioButton>
+                    <RadioButton x:Name="EpicRarity" Checked="EpicRarity_Checked">Эпическое</RadioButton>
+                </StackPanel>
+
             </StackPanel>
         </StackPanel>
     </Grid>

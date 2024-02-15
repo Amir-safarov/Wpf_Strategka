@@ -9,5 +9,6 @@ namespace Wpf_Strategka
     public partial class App : Application
     {
         public static UninversalClass uninversalClass = null;
+        public static WeaponRarity weaponRare = WeaponRarity.Common;
     }
 }
