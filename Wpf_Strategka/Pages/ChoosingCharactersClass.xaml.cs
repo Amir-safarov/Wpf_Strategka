@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Wpf_Strategka.Classes;
 using Wpf_Strategka.Constants;
 
@@ -23,12 +14,11 @@ namespace Wpf_Strategka.Pages
     /// </summary>
     public partial class ChoosingCharactersClass : Page
     {
-        private UninversalClass selectedClass;
         ClassesInfo info = new ClassesInfo();
         public ChoosingCharactersClass()
         {
             InitializeComponent();
-            selectedClass = null;
+            App.uninversalClass = null;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -40,20 +30,20 @@ namespace Wpf_Strategka.Pages
                 switch (buttonText)
                 {
                     case "Warrior":
-                        selectedClass = new UninversalClass("Warrior", "", 30, 200, 15, 80, 10, 50, 25, 100); ;
+                        App.uninversalClass = new UninversalClass("Warrior", "", 30, 200, 15, 80, 10, 50, 25, 100); ;
                         break;
                     case "Rogue":
-                        selectedClass = new UninversalClass("Rogue", "", 20, 65, 30, 200, 15, 70, 20, 80);
+                        App.uninversalClass = new UninversalClass("Rogue", "", 20, 65, 30, 200, 15, 70, 20, 80);
                         break;
                     case "Wizard":
-                        selectedClass = new UninversalClass("Wizard", "", 15, 45, 20, 80, 35, 200, 15, 70);
+                        App.uninversalClass = new UninversalClass("Wizard", "", 15, 45, 20, 80, 35, 200, 15, 70);
                         break;
                 }
-                if (info.statsInfo.ContainsKey(selectedClass.ClassName) && info.heroInfo.ContainsKey(buttonText))
+                if (info.statsInfo.ContainsKey(App.uninversalClass.ClassName) && info.heroInfo.ContainsKey(buttonText))
                 {
-                    StatsInfo.Text = info.statsInfo[selectedClass.ClassName];
-                    HeroInfo.Text = $"Strength {selectedClass.Strength}/{selectedClass.MaxStrength}\nDexterity {selectedClass.Dexterity}/{selectedClass.MaxDexterity}\nIntelligence {selectedClass.Inteligence}/{selectedClass.MaxInteligence}\nVitality {selectedClass.Vitality}/{selectedClass.MaxVitality}\n";
-                    string imagePath = info.heroImages[selectedClass.ClassName];
+                    StatsInfo.Text = info.statsInfo[App.uninversalClass.ClassName];
+                    HeroInfo.Text = $"Strength {App.uninversalClass.Strength}/{App.uninversalClass.MaxStrength}\nDexterity {App.uninversalClass.Dexterity}/{App.uninversalClass.MaxDexterity}\nIntelligence {App.uninversalClass.Inteligence}/{App.uninversalClass.MaxInteligence}\nVitality {App.uninversalClass.Vitality}/{App.uninversalClass.MaxVitality}\n";
+                    string imagePath = ClassesInfo.heroImages[App.uninversalClass.ClassName];
                     ImageSource imageSource = new BitmapImage(new Uri(imagePath, UriKind.Relative));
                     ClassImg.Source = imageSource;
                 }
@@ -64,22 +54,22 @@ namespace Wpf_Strategka.Pages
 
         private void NextBTN_Click(object sender, RoutedEventArgs e)
         {
-            if (selectedClass == null || selectedClass.Name == "")
+            if (App.uninversalClass == null || App.uninversalClass.Name == "")
                 return;
-            NavigationService.Navigate(new CharacterСharacteristics(selectedClass));
+            NavigationService.Navigate(new CharacterСharacteristics());
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox textBox = sender as TextBox;
-            if (selectedClass == null)
+            if (App.uninversalClass == null)
             {
                 MessageBox.Show("Сначала выберите класс");
                 textBox.Text = null;
                 return;
             }
             if (textBox != null)
-                selectedClass.Name = textBox.Text;
+                App.uninversalClass.Name = textBox.Text;
         }
     }
 }

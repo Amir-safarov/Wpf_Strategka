@@ -1,0 +1,64 @@
+﻿<Page x:Class="Wpf_Strategka.Pages.EquipmentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Wpf_Strategka.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="850" d:DesignWidth="950"
+      Title="EquipmentPage" Background="#151515">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" Grid.Row="1" Background="#C0C0C0" Margin="10">
+            <Image Name="CharacterClassIMG"/>
+        </StackPanel>
+        <DockPanel Grid.Column="1" Grid.Row="2" Background="#FF0D1352" Margin="10" Grid.ColumnSpan="2">
+            <TextBlock Name="HeroInfo" TextWrapping="Wrap"  Margin="5" HorizontalAlignment="Left"></TextBlock>
+            <TextBlock Name="HeroStats" TextWrapping="Wrap" Margin="5" HorizontalAlignment="Right"></TextBlock>
+        </DockPanel>
+        <StackPanel Orientation="Vertical" Margin="10"  Background="#C0C0C0" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Foreground="Black">Описание предмета:</TextBlock>
+                <TextBlock Name ="ItemName" Foreground="Black" Margin="10,0,0,0" FontWeight="Bold"/>
+            </StackPanel>
+            <TextBlock Name ="ItemDiscrip" Foreground="Black" Margin="20,3,3,3" FontStyle="Italic" TextWrapping="Wrap"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <TextBlock>Выбор предмета</TextBlock>
+            <ComboBox Name="EqupCB"  ItemsSource="{Binding Equp}" DisplayMemberPath="EqupName" SelectionChanged="EqupCB_SelectionChanged"></ComboBox>
+            <StackPanel Orientation="Vertical">
+                <RadioButton x:Name="CommonRarity" IsChecked="True">Обычное</RadioButton>
+                <RadioButton x:Name="RareRarity">Редкое</RadioButton>
+                <RadioButton x:Name="EpicRarity">Эпическое</RadioButton>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="3">
+            <TextBlock>Требования: </TextBlock>
+            <TextBlock Name="REQUIREMENTSTB"></TextBlock>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="4">
+            <StackPanel>
+                <TextBlock>Дополнительные предметы:</TextBlock>
+                <RadioButton x:Name="OneRingRB">Одно кольцо</RadioButton>
+                <RadioButton x:Name="TwoRingRB">Два кольца</RadioButton>
+            </StackPanel>
+            <StackPanel>
+                <RadioButton x:Name="AmuletRB">Амулет одет</RadioButton>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

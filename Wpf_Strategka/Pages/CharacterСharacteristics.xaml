@@ -28,7 +28,6 @@
         <DockPanel Grid.Column="3" Grid.Row="2" Background="#FF0D1352" Margin="10">
             <TextBlock Name="HeroInfo" TextWrapping="Wrap"  Margin="5" HorizontalAlignment="Left"></TextBlock>
             <TextBlock Name="HeroStats" TextWrapping="Wrap" Margin="5" HorizontalAlignment="Right"></TextBlock>
-
         </DockPanel>
         <TextBlock Name="StatsInfo" TextWrapping="Wrap" Grid.Column="3" Grid.Row="1" Margin="10"></TextBlock>
         <TextBlock Name="LevelInfo" TextWrapping="Wrap" Grid.Column="2" Grid.Row="1" Margin="10"></TextBlock>
@@ -104,12 +103,12 @@
                     <CheckBox x:Name="TwoHeaden" IsThreeState="False" IsChecked="False" IsEnabled="False" Height="20" Content="Двуручное оружие" Checked="TwoHeaden_Checked"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
-                    <RadioButton x:Name="CommonRarity" Checked="CommonRarity_Checked">Обычное</RadioButton>
+                    <RadioButton x:Name="CommonRarity" Checked="CommonRarity_Checked" IsChecked="True">Обычное</RadioButton>
                     <RadioButton x:Name="RareRarity" Checked="RareRarity_Checked">Редкое</RadioButton>
                     <RadioButton x:Name="EpicRarity" Checked="EpicRarity_Checked">Эпическое</RadioButton>
                 </StackPanel>
-
             </StackPanel>
+            <Button Name="NextBTN" Click="NextBTN_Click">Обмундирование -></Button>
         </StackPanel>
     </Grid>
 

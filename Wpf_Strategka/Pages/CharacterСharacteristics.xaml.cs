@@ -5,19 +5,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using Wpf_Strategka.Classes;
 using Wpf_Strategka.Constants;
-using System.Net;
-using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace Wpf_Strategka.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для CharacterСharacteristics.xaml
-    /// </summary>
     public partial class CharacterСharacteristics : Page
     {
-        private UninversalClass selectedClass;
-        private UniversalWeapon universalWeapon;
 
         private ClassesInfo info = new ClassesInfo();
         int currentPoint;
@@ -36,29 +28,25 @@ namespace Wpf_Strategka.Pages
         private double startedIntl;
         private double startedVit;
 
-        public CharacterСharacteristics(UninversalClass uninversalClass)
+        public CharacterСharacteristics()
         {
             InitializeComponent();
-
-            selectedClass = uninversalClass;
-            App.uninversalClass = uninversalClass;
-            string imagePath = info.heroImages[selectedClass.ClassName];
+            UpdateUIFromCharacteristics();
+            string imagePath = ClassesInfo.heroImages[App.uninversalClass.ClassName];
             ImageSource imageSource = new BitmapImage(new Uri(imagePath, UriKind.Relative));
             CharacterClassIMG.Source = imageSource;
-            StatsInfo.Text = info.statsInfo[selectedClass.ClassName];
+            StatsInfo.Text = info.statsInfo[App.uninversalClass.ClassName];
             LevelInfo.Text = info.levelInfo;
-            CommonRarity.IsChecked = true;
             SetStartedValues();
-            UpdateUIFromCharacteristics();
             ShowInfo();
         }
 
         private void UpdateUIFromCharacteristics()
         {
-            StrengthTB.Text = selectedClass.Strength.ToString();
-            DexterityTB.Text = selectedClass.Dexterity.ToString();
-            InteligenceTB.Text = selectedClass.Inteligence.ToString();
-            VitalityTB.Text = selectedClass.Vitality.ToString();
+            StrengthTB.Text = App.uninversalClass.Strength.ToString();
+            DexterityTB.Text = App.uninversalClass.Dexterity.ToString();
+            InteligenceTB.Text = App.uninversalClass.Inteligence.ToString();
+            VitalityTB.Text = App.uninversalClass.Vitality.ToString();
         }
 
         private void IncreaseValue(object sender, RoutedEventArgs e)
@@ -107,45 +95,45 @@ namespace Wpf_Strategka.Pages
 
         private void UpdateCharacteristicsFromUI()
         {
-            selectedClass.Strength = int.Parse(StrengthTB.Text);
-            selectedClass.Dexterity = int.Parse(DexterityTB.Text);
-            selectedClass.Inteligence = int.Parse(InteligenceTB.Text);
-            selectedClass.Vitality = int.Parse(VitalityTB.Text);
+            App.uninversalClass.Strength = int.Parse(StrengthTB.Text);
+            App.uninversalClass.Dexterity = int.Parse(DexterityTB.Text);
+            App.uninversalClass.Inteligence = int.Parse(InteligenceTB.Text);
+            App.uninversalClass.Vitality = int.Parse(VitalityTB.Text);
         }
 
         private void ShowInfo()
         {
-            UpdateCharacteristicsFromUI();
-            HeroInfo.Text = $"Class: {selectedClass.ClassName}\nName: {selectedClass.Name}\n" +
-                $"Strength: {selectedClass.Strength} / {selectedClass.MaxStrength}" +
-                $"\nDexterity: {selectedClass.Dexterity} / {selectedClass.MaxDexterity}\n" +
-                $"Inteligence: {selectedClass.Inteligence} / {selectedClass.MaxInteligence}\n" +
-                $"Vitality: {selectedClass.Vitality}/{selectedClass.MaxVitality}\n";
+            HeroInfo.Text = $"Class: {App.uninversalClass.ClassName}\nName: {App.uninversalClass.Name}\n" +
+                $"Strength: {App.uninversalClass.Strength} / {App.uninversalClass.MaxStrength}" +
+                $"\nDexterity: {App.uninversalClass.Dexterity} / {App.uninversalClass.MaxDexterity}\n" +
+                $"Inteligence: {App.uninversalClass.Inteligence} / {App.uninversalClass.MaxInteligence}\n" +
+                $"Vitality: {App.uninversalClass.Vitality}/{App.uninversalClass.MaxVitality}\n";
 
-            HeroStats.Text = $"Health: {selectedClass.Health}\nArmor: {selectedClass.Armor}\n " +
-                $"Mana: {selectedClass.Mana}\nPhysical Damage: {selectedClass.PhysicalDamage}\n" +
-                $"Magic Damage: {selectedClass.MagicDamage}\nMagic Defense: {selectedClass.MagicDefense}\n" +
-                $"Crit Chanse: {selectedClass.CritChanse}\nCrit Damage: {selectedClass.CritDamage}";
+            HeroStats.Text = $"Health: {App.uninversalClass.Health}\nArmor: {App.uninversalClass.Armor}\n " +
+                $"Mana: {App.uninversalClass.Mana}\nPhysical Damage: {App.uninversalClass.PhysicalDamage}\n" +
+                $"Magic Damage: {App.uninversalClass.MagicDamage}\nMagic Defense: {App.uninversalClass.MagicDefense}\n" +
+                $"Crit Chanse: {App.uninversalClass.CritChanse}\nCrit Damage: {App.uninversalClass.CritDamage}";
         }
         private void SetStartedValues()
         {
-            startedStr = selectedClass.Strength;
-            startedIntl = selectedClass.Inteligence;
-            startedDex = selectedClass.Dexterity;
-            startedVit = selectedClass.Vitality;
+            startedStr = App.uninversalClass.Strength;
+            startedIntl = App.uninversalClass.Inteligence;
+            startedDex = App.uninversalClass.Dexterity;
+            startedVit = App.uninversalClass.Vitality;
         }
+
         private double GetMaxValueForTextBlock(TextBlock textBlock)
         {
             switch (textBlock.Name)
             {
                 case "StrengthTB":
-                    return selectedClass.MaxStrength;
+                    return App.uninversalClass.MaxStrength;
                 case "DexterityTB":
-                    return selectedClass.MaxDexterity;
+                    return App.uninversalClass.MaxDexterity;
                 case "InteligenceTB":
-                    return selectedClass.MaxInteligence;
+                    return App.uninversalClass.MaxInteligence;
                 case "VitalityTB":
-                    return selectedClass.MaxVitality;
+                    return App.uninversalClass.MaxVitality;
                 default:
                     return 0;
             }
@@ -195,6 +183,7 @@ namespace Wpf_Strategka.Pages
             if (currentExp >= 1000 && !isSecondLvl)
             {
                 LevelTB.Text = 2.ToString();
+                App.playerLVL = 2;
                 ScoreCountUp();
                 isSecondLvl = true;
             }
@@ -202,42 +191,49 @@ namespace Wpf_Strategka.Pages
             {
                 LevelTB.Text = 3.ToString();
                 ScoreCountUp();
+                App.playerLVL = 3;
                 isThirdLvl = true;
             }
             if (currentExp >= 6000 && !isFourthLvl)
             {
                 LevelTB.Text = 4.ToString();
                 ScoreCountUp();
+                App.playerLVL = 4;
                 isFourthLvl = true;
             }
             if (currentExp >= 10000 && !isFifthLvl)
             {
                 LevelTB.Text = 5.ToString();
                 ScoreCountUp();
+                App.playerLVL = 5;
                 isFifthLvl = true;
             }
             if (currentExp >= 15000 && !isSixthLvl)
             {
                 LevelTB.Text = 6.ToString();
                 ScoreCountUp();
+                App.playerLVL = 6;
                 isSixthLvl = true;
             }
             if (currentExp >= 21000 && !isSeventhLvl)
             {
                 LevelTB.Text = 7.ToString();
                 ScoreCountUp();
+                App.playerLVL = 7;
                 isSeventhLvl = true;
             }
             if (currentExp >= 28000 && !isEighthLvl)
             {
                 LevelTB.Text = 8.ToString();
                 ScoreCountUp();
+                App.playerLVL = 8;
                 isEighthLvl = true;
             }
             if (currentExp >= 36000 && !isNinthLvl)
             {
                 LevelTB.Text = 9.ToString();
                 ScoreCountUp();
+                App.playerLVL = 9;
                 isNinthLvl = true;
             }
         }
@@ -254,12 +250,14 @@ namespace Wpf_Strategka.Pages
         {
             TextBlock selectedTextBlock = (TextBlock)WeaponCB.SelectedItem;
             string selectedWeapon = selectedTextBlock.Text;
-            universalWeapon = info.weaponCoefficient[selectedWeapon];
-            selectedClass.CalculateStats(universalWeapon);
-            SetWeaponType(universalWeapon);
+            App.uninversalWeapon = info.weaponCoefficient[selectedWeapon];
+            App.uninversalClass.CalculateStats(App.uninversalWeapon);
+            SetWeaponType(App.uninversalWeapon);
             WeaponRarityTB.Text = $"Оружие: ({App.weaponRare})";
             ShowInfo();
         }
+
+
         private void SetWeaponType(UniversalWeapon selectedWeapon)
         {
             DropCheckBoxValues();
@@ -288,37 +286,49 @@ namespace Wpf_Strategka.Pages
         private void TwoHeaden_Checked(object sender, RoutedEventArgs e)
         {
             Shield.IsChecked = false;
-            selectedClass.CalculateStats(universalWeapon, false, true);
+            App.uninversalClass.CalculateStats(App.uninversalWeapon, false, true);
             ShowInfo();
         }
 
         private void Shield_Checked(object sender, RoutedEventArgs e)
         {
             TwoHeaden.IsChecked = false;
-            selectedClass.CalculateStats(universalWeapon, true, false);
+            App.uninversalClass.CalculateStats(App.uninversalWeapon, true, false);
             ShowInfo();
         }
 
         private void CommonRarity_Checked(object sender, RoutedEventArgs e)
         {
             App.weaponRare = WeaponRarity.Common;
+            if (App.uninversalWeapon != null)
+                App.uninversalClass.CalculateStats(App.uninversalWeapon);
+            ShowInfo();
         }
 
         private void RareRarity_Checked(object sender, RoutedEventArgs e)
         {
             App.weaponRare = WeaponRarity.Rare;
+            App.uninversalClass.CalculateStats(App.uninversalWeapon);
+            ShowInfo();
         }
 
         private void EpicRarity_Checked(object sender, RoutedEventArgs e)
         {
             App.weaponRare = WeaponRarity.Epic;
+            App.uninversalClass.CalculateStats(App.uninversalWeapon);
+            ShowInfo();
         }
 
         private void TwoWeapon_Checked(object sender, RoutedEventArgs e)
         {
             Shield.IsChecked = false;
-            selectedClass.CalculateStats(universalWeapon, true, false);
+            App.uninversalClass.CalculateStats(App.uninversalWeapon, true, false);
             ShowInfo();
+        }
+
+        private void NextBTN_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new EquipmentPage());
         }
     }
 }
