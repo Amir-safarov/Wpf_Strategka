@@ -48,6 +48,7 @@ namespace Wpf_Strategka.Pages
                     ClassImg.Source = imageSource;
                 }
                 ChosingNameSP.Visibility = Visibility.Visible;
+                NextBTN.Visibility = Visibility.Visible;
             }
 
         }

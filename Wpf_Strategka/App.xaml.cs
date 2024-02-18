@@ -13,5 +13,6 @@ namespace Wpf_Strategka
         public static UniversalEqup uninversalEqup;
         public static int playerLVL;
         public static WeaponRarity weaponRare = WeaponRarity.Common;
+        public static WeaponRarity equpRare = WeaponRarity.Common;
     }
 }

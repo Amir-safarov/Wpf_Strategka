@@ -41,9 +41,9 @@
             <TextBlock>Выбор предмета</TextBlock>
             <ComboBox Name="EqupCB"  ItemsSource="{Binding Equp}" DisplayMemberPath="EqupName" SelectionChanged="EqupCB_SelectionChanged"></ComboBox>
             <StackPanel Orientation="Vertical">
-                <RadioButton x:Name="CommonRarity" IsChecked="True">Обычное</RadioButton>
-                <RadioButton x:Name="RareRarity">Редкое</RadioButton>
-                <RadioButton x:Name="EpicRarity">Эпическое</RadioButton>
+                <RadioButton x:Name="CommonRarity" IsChecked="True" Checked="CommonRarity_Checked">Обычное</RadioButton>
+                <RadioButton x:Name="RareRarity" Checked="RareRarity_Checked">Редкое</RadioButton>
+                <RadioButton x:Name="EpicRarity" Checked="EpicRarity_Checked">Эпическое</RadioButton>
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="3">
@@ -53,11 +53,14 @@
         <StackPanel Grid.Row="1" Grid.Column="4">
             <StackPanel>
                 <TextBlock>Дополнительные предметы:</TextBlock>
-                <RadioButton x:Name="OneRingRB">Одно кольцо</RadioButton>
-                <RadioButton x:Name="TwoRingRB">Два кольца</RadioButton>
+                <RadioButton x:Name="OneRingRB" Checked="OneRingRB_Checked">Одно кольцо</RadioButton>
+                <RadioButton x:Name="TwoRingRB" Checked="TwoRingRB_Checked">Два кольца</RadioButton>
             </StackPanel>
             <StackPanel>
-                <RadioButton x:Name="AmuletRB">Амулет одет</RadioButton>
+                <RadioButton x:Name="AmuletRB" Checked="AmuletRB_Checked">Амулет надет</RadioButton>
+            </StackPanel>
+            <StackPanel>
+                <RadioButton x:Name="HelmetRB" Checked="HelmetRB_Checked">Шлем надет</RadioButton>
             </StackPanel>
         </StackPanel>
     </Grid>

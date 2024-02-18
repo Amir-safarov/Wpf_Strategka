@@ -24,12 +24,16 @@ namespace Wpf_Strategka.Pages
         private double _saveMagicDefense;
         private double _saveCritChanse;
         private double _saveCritDamage;
+
+        private bool _oneRignEqup;
+        private bool _twoRignEqup;
+        private bool _amuletEqup;
+        private bool _helmetEqup;
         public List<UniversalEqup> Equp { get; set; }
         public EquipmentPage()
         {
-            InitializeComponent();
-            ShowInfo();
             SaveCurrentStats();
+            InitializeComponent();
             Equp = new List<UniversalEqup>
             {
             new UniversalEqup("Robe", 1.05, 1.15, 1.15, 1.05, 0, 0, 5, 5, 0),
@@ -42,6 +46,7 @@ namespace Wpf_Strategka.Pages
             string imagePath = ClassesInfo.heroImages[App.uninversalClass.ClassName];
             ImageSource imageSource = new BitmapImage(new Uri(imagePath, UriKind.Relative));
             CharacterClassIMG.Source = imageSource;
+            ShowInfo();
 
         }
         private void ShowInfo()
@@ -60,16 +65,20 @@ namespace Wpf_Strategka.Pages
 
         private void EqupCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           GetOldValues();
+            GetOldValues();
             UniversalEqup selectedEqup = (EqupCB.SelectedItem as UniversalEqup);
             App.uninversalEqup = selectedEqup;
             if (App.uninversalClass.Strength >= selectedEqup.StrReq &&
                 App.uninversalClass.Vitality >= selectedEqup.VitReq &&
                 App.playerLVL >= selectedEqup.OverLVLReq)
 
-                App.uninversalClass.CalculateStatsWithEqup();
+                App.uninversalClass.CalculateStatsWithEqup(_oneRignEqup, _twoRignEqup, _amuletEqup, _helmetEqup);
             else
+            {
                 MessageBox.Show("Персонаж не достаточно прокачен");
+                EqupCB.SelectedIndex = 0;
+                return;
+            }
             ShowInfo();
         }
         public void SaveCurrentStats()
@@ -104,6 +113,75 @@ namespace Wpf_Strategka.Pages
             App.uninversalClass.MagicDefense = _saveMagicDefense;
             App.uninversalClass.CritChanse = _saveCritChanse;
             App.uninversalClass.CritDamage = _saveCritDamage;
+        }
+
+        private void CommonRarity_Checked(object sender, RoutedEventArgs e)
+        {
+            GetOldValues();
+            App.equpRare = WeaponRarity.Common;
+            App.uninversalClass.CalculateStatsWithEqup(_oneRignEqup, _twoRignEqup, _amuletEqup, _helmetEqup);
+            ShowInfo();
+        }
+
+        private void RareRarity_Checked(object sender, RoutedEventArgs e)
+        {
+            GetOldValues();
+            App.equpRare = WeaponRarity.Rare;
+            App.uninversalClass.CalculateStatsWithEqup(_oneRignEqup, _twoRignEqup, _amuletEqup, _helmetEqup);
+            ShowInfo();
+        }
+
+        private void EpicRarity_Checked(object sender, RoutedEventArgs e)
+        {
+            GetOldValues();
+            App.equpRare = WeaponRarity.Epic;
+            App.uninversalClass.CalculateStatsWithEqup(_oneRignEqup, _twoRignEqup, _amuletEqup, _helmetEqup);
+            ShowInfo();
+        }
+
+        private void OneRingRB_Checked(object sender, RoutedEventArgs e)
+        {
+            GetOldValues();
+            RadioButton pressed = (RadioButton)sender;
+            _oneRignEqup = (bool)pressed.IsChecked;
+            _twoRignEqup = !(bool)pressed.IsChecked;
+            App.uninversalClass.CalculateStatsWithEqup(_oneRignEqup, _twoRignEqup, _amuletEqup, _helmetEqup);
+            ShowInfo();
+        }
+
+        private void TwoRingRB_Checked(object sender, RoutedEventArgs e)
+        {
+            GetOldValues();
+            RadioButton pressed = (RadioButton)sender;
+            _twoRignEqup = (bool)pressed.IsChecked;
+            _oneRignEqup = !(bool)pressed.IsChecked;
+            App.uninversalClass.CalculateStatsWithEqup(_oneRignEqup, _twoRignEqup, _amuletEqup, _helmetEqup);
+            ShowInfo();
+        }
+
+        private void AmuletRB_Checked(object sender, RoutedEventArgs e)
+        {
+            GetOldValues();
+            RadioButton pressed = (RadioButton)sender;
+            _amuletEqup = (bool)pressed.IsChecked;
+            App.uninversalClass.CalculateStatsWithEqup(_oneRignEqup, _twoRignEqup, _amuletEqup, _helmetEqup);
+            ShowInfo();
+        }
+
+        private void HelmetRB_Checked(object sender, RoutedEventArgs e)
+        {
+            GetOldValues();
+            RadioButton pressed = (RadioButton)sender;
+            _helmetEqup = (bool)pressed.IsChecked;
+            if (App.uninversalClass.Strength >= 10)
+                App.uninversalClass.CalculateStatsWithEqup(_oneRignEqup, _twoRignEqup, _amuletEqup, _helmetEqup);
+            else
+            {
+                MessageBox.Show("Персонаж не достаточно прокачен");
+                pressed.IsChecked = false;
+                return;
+            }
+            ShowInfo();
         }
     }
 }

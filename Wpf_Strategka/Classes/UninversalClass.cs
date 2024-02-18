@@ -105,20 +105,61 @@ namespace Wpf_Strategka.Classes
         public double CritChanse { get { return _critChanse; } set { _critChanse = value; } }
         public double CritDamage { get { return _critDamage; } set { _critDamage = value; } }
 
-        public void CalculateStatsWithEqup()
+        public void CalculateStatsWithEqup(bool isOneRing, bool isTwoRing, bool isAmulet, bool isHelmet)
         {
-            if (App.uninversalEqup.ArmorBuff != 0)
-                Armor *= App.uninversalEqup.ArmorBuff;
-            if (App.uninversalEqup.ManaBuff != 0)
-                Mana *= App.uninversalEqup.ManaBuff;
-            if (App.uninversalEqup.IntlBuff != 0)
-                Inteligence *= App.uninversalEqup.IntlBuff;
-            if (App.uninversalEqup.HpBuff != 0)
-                Health *= App.uninversalEqup.HpBuff;
-            if (App.uninversalEqup.DexBuff != 0)
-                Dexterity *= App.uninversalEqup.DexBuff;
-            if (App.uninversalEqup.StrBuff!= 0)
-                Strength *= App.uninversalEqup.StrBuff;
+            if (App.uninversalEqup != null)
+            {
+                CalculateStatsWithEqup();
+                if (isOneRing)
+                    Mana *= 1.05;
+                if (isTwoRing)
+                    Mana *= 1.15;
+                if (isHelmet)
+                    Armor *= 1.2;
+                if (isAmulet)
+                {
+                    Inteligence *= 1.1;
+                    Mana *= Inteligence / 4;
+                    MagicDefense *= 1.1;
+                }
+
+            }
+        }
+        private void CalculateStatsWithEqup()
+        {
+            if (App.equpRare == WeaponRarity.Common)
+            {
+                if (App.uninversalEqup.ArmorBuff != 0)
+                    Armor *= App.uninversalEqup.ArmorBuff;
+            }
+            if (App.equpRare == WeaponRarity.Rare)
+            {
+                if (App.uninversalEqup.ArmorBuff != 0)
+                    Armor *= App.uninversalEqup.ArmorBuff;
+                if (App.uninversalEqup.ManaBuff != 0)
+                    Mana *= App.uninversalEqup.ManaBuff;
+                if (App.uninversalEqup.IntlBuff != 0)
+                    Inteligence *= App.uninversalEqup.IntlBuff;
+                if (App.uninversalEqup.DexBuff != 0)
+                    Dexterity *= App.uninversalEqup.DexBuff;
+                if (App.uninversalEqup.StrBuff != 0)
+                    Strength *= App.uninversalEqup.StrBuff;
+            }
+            if (App.equpRare == WeaponRarity.Epic)
+            {
+                if (App.uninversalEqup.ArmorBuff != 0)
+                    Armor *= App.uninversalEqup.ArmorBuff;
+                if (App.uninversalEqup.ManaBuff != 0)
+                    Mana *= App.uninversalEqup.ManaBuff;
+                if (App.uninversalEqup.IntlBuff != 0)
+                    Inteligence *= App.uninversalEqup.IntlBuff;
+                if (App.uninversalEqup.DexBuff != 0)
+                    Dexterity *= App.uninversalEqup.DexBuff;
+                if (App.uninversalEqup.StrBuff != 0)
+                    Strength *= App.uninversalEqup.StrBuff;
+                if (App.uninversalEqup.HpBuff != 0)
+                    Health *= App.uninversalEqup.HpBuff;
+            }
         }
 
         public void GetOldValues()
