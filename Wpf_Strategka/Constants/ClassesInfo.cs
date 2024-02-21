@@ -42,5 +42,20 @@ namespace Wpf_Strategka.Constants
         internal static int[] wizardCurrentStats = new int[] { 15, 20, 35, 15 };
         internal static int[] wizarMaxStats = new int[] { 45, 80, 250, 70 };
 
+        internal static Dictionary<string, string> equpDescript = new Dictionary<string, string>()
+        {
+            {"Robe", $"Типичная накидка для магов разных мастей.\nЕсли нечего накинуть,отличный вариант."},        
+            {"Leather Armor", $"Броня распростаненная среди оруженосцев и прочей шелухи.\nВпринципе итс окей."},        
+            {"Chain Armor", $"Класическая кольчуга.\nВ такой и не стыдно в свет выйти."},        
+            {"Plate  Armor", $"За такую броню можно и убить.\nВ этой броне на вас будут смотреть не только барышни и господины,даже собаки."}        
+        };
+
+        internal static Dictionary<string, string> equpReq= new Dictionary<string, string>()
+        {
+            {"Robe", $""},
+            {"Leather Armor", $"Броня распростаненная среди оруженосцев и прочей шелухи.\nВпринципе итс окей."},
+            {"Chain Armor", $"Класическая кольчуга.\nВ такой и не стыдно в свет выйти."},
+            {"Plate  Armor", $"За такую броню можно и убить.\nВ этой броне на вас будут смотреть не только барышни и господины,даже собаки."}
+        };
     }
 }

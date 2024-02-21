@@ -45,10 +45,11 @@
                 <RadioButton x:Name="RareRarity" Checked="RareRarity_Checked">Редкое</RadioButton>
                 <RadioButton x:Name="EpicRarity" Checked="EpicRarity_Checked">Эпическое</RadioButton>
             </StackPanel>
+            <Button x:Name="PutOnBTN" Click="PutOnBTN_Click" Visibility="Collapsed">Примерить</Button>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="3">
             <TextBlock>Требования: </TextBlock>
-            <TextBlock Name="REQUIREMENTSTB"></TextBlock>
+            <TextBlock Name="REQUIREMENTSTB" Margin="10"></TextBlock>
         </StackPanel>
         <StackPanel Grid.Row="1" Grid.Column="4">
             <StackPanel>
@@ -57,10 +58,10 @@
                 <RadioButton x:Name="TwoRingRB" Checked="TwoRingRB_Checked">Два кольца</RadioButton>
             </StackPanel>
             <StackPanel>
-                <RadioButton x:Name="AmuletRB" Checked="AmuletRB_Checked">Амулет надет</RadioButton>
+                <CheckBox x:Name="AmuletRB" Checked="AmuletRB_Checked" Unchecked="AmuletRB_Checked">Амулет надет</CheckBox>
             </StackPanel>
             <StackPanel>
-                <RadioButton x:Name="HelmetRB" Checked="HelmetRB_Checked">Шлем надет</RadioButton>
+                <CheckBox x:Name="HelmetRB" Checked="HelmetRB_Checked" Unchecked="HelmetRB_Checked">Шлем надет</CheckBox>
             </StackPanel>
         </StackPanel>
     </Grid>

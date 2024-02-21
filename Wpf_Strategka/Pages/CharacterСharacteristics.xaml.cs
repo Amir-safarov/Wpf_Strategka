@@ -28,8 +28,9 @@ namespace Wpf_Strategka.Pages
         private double startedIntl;
         private double startedVit;
 
-        public CharacterСharacteristics()
+        public CharacterСharacteristics(UninversalClass selectedClass)
         {
+            TempStats.SaveCurrentStats();
             InitializeComponent();
             UpdateUIFromCharacteristics();
             string imagePath = ClassesInfo.heroImages[App.uninversalClass.ClassName];
@@ -254,9 +255,16 @@ namespace Wpf_Strategka.Pages
             App.uninversalClass.CalculateStats(App.uninversalWeapon);
             SetWeaponType(App.uninversalWeapon);
             WeaponRarityTB.Text = $"Оружие: ({App.weaponRare})";
+            OpenWeaponRarity();
             ShowInfo();
         }
 
+        private void OpenWeaponRarity()
+        {
+            RareRarity.IsEnabled = true;
+            CommonRarity.IsEnabled = true;
+            EpicRarity.IsEnabled = true;
+        }
 
         private void SetWeaponType(UniversalWeapon selectedWeapon)
         {
@@ -285,42 +293,74 @@ namespace Wpf_Strategka.Pages
 
         private void TwoHeaden_Checked(object sender, RoutedEventArgs e)
         {
-            Shield.IsChecked = false;
-            App.uninversalClass.CalculateStats(App.uninversalWeapon, false, true);
+            TempStats.GetOldValues();
+
+            if (sender is CheckBox checkBox)
+            {
+                if (checkBox.IsChecked == true)
+                {
+                    Shield.IsChecked = false;
+                    App.uninversalClass.CalculateStats(App.uninversalWeapon, false, true);
+                }
+                else
+                {
+                    Shield.IsChecked = false;
+                    App.uninversalClass.CalculateStats(App.uninversalWeapon, false, false);
+                }
+            }
             ShowInfo();
         }
 
         private void Shield_Checked(object sender, RoutedEventArgs e)
         {
-            TwoHeaden.IsChecked = false;
-            App.uninversalClass.CalculateStats(App.uninversalWeapon, true, false);
+            TempStats.GetOldValues();
+            if (sender is CheckBox checkBox)
+            {
+                if (checkBox.IsChecked == true)
+                {
+                    TwoHeaden.IsChecked = false;
+                    App.uninversalClass.CalculateStats(App.uninversalWeapon, true, false);
+                }
+                else
+                {
+                    TwoHeaden.IsChecked = false;
+                    App.uninversalClass.CalculateStats(App.uninversalWeapon, false, false);
+                }
+            }
             ShowInfo();
         }
 
         private void CommonRarity_Checked(object sender, RoutedEventArgs e)
         {
+            TempStats.GetOldValues();
             App.weaponRare = WeaponRarity.Common;
             if (App.uninversalWeapon != null)
                 App.uninversalClass.CalculateStats(App.uninversalWeapon);
+            WeaponRarityTB.Text = $"Оружие: ({App.weaponRare})";
             ShowInfo();
         }
 
         private void RareRarity_Checked(object sender, RoutedEventArgs e)
         {
+            TempStats.GetOldValues();
             App.weaponRare = WeaponRarity.Rare;
             App.uninversalClass.CalculateStats(App.uninversalWeapon);
+            WeaponRarityTB.Text = $"Оружие: ({App.weaponRare})";
             ShowInfo();
         }
 
         private void EpicRarity_Checked(object sender, RoutedEventArgs e)
         {
+            TempStats.GetOldValues();
             App.weaponRare = WeaponRarity.Epic;
             App.uninversalClass.CalculateStats(App.uninversalWeapon);
+            WeaponRarityTB.Text = $"Оружие: ({App.weaponRare})";
             ShowInfo();
         }
 
         private void TwoWeapon_Checked(object sender, RoutedEventArgs e)
         {
+            TempStats.GetOldValues();
             Shield.IsChecked = false;
             App.uninversalClass.CalculateStats(App.uninversalWeapon, true, false);
             ShowInfo();

@@ -99,13 +99,13 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Vertical">
                     <CheckBox x:Name="TwoWeapon" IsThreeState="False" IsChecked="False" IsEnabled="False" Height="20" Content="В двух руках" Checked="TwoWeapon_Checked" />
-                    <CheckBox x:Name="Shield" IsThreeState="False" IsChecked="False" IsEnabled="False" Height="20" Content="Щит" Checked="Shield_Checked" />
-                    <CheckBox x:Name="TwoHeaden" IsThreeState="False" IsChecked="False" IsEnabled="False" Height="20" Content="Двуручное оружие" Checked="TwoHeaden_Checked"/>
+                    <CheckBox x:Name="Shield" IsThreeState="False" IsChecked="False" IsEnabled="False" Height="20" Content="Щит" Checked="Shield_Checked" Unchecked="Shield_Checked" />
+                    <CheckBox x:Name="TwoHeaden" IsThreeState="False" IsChecked="False" IsEnabled="False" Height="20" Content="Двуручное оружие" Checked="TwoHeaden_Checked" Unchecked="TwoHeaden_Checked"/>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
-                    <RadioButton x:Name="CommonRarity" Checked="CommonRarity_Checked" IsChecked="True">Обычное</RadioButton>
-                    <RadioButton x:Name="RareRarity" Checked="RareRarity_Checked">Редкое</RadioButton>
-                    <RadioButton x:Name="EpicRarity" Checked="EpicRarity_Checked">Эпическое</RadioButton>
+                    <RadioButton x:Name="CommonRarity" Checked="CommonRarity_Checked" IsChecked="True" IsEnabled="False">Обычное</RadioButton>
+                    <RadioButton x:Name="RareRarity" Checked="RareRarity_Checked" IsEnabled="False">Редкое</RadioButton>
+                    <RadioButton x:Name="EpicRarity" Checked="EpicRarity_Checked" IsEnabled="False">Эпическое</RadioButton>
                 </StackPanel>
             </StackPanel>
             <Button Name="NextBTN" Click="NextBTN_Click">Обмундирование -></Button>

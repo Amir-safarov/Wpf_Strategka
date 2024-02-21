@@ -63,6 +63,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Classes\TempStats.cs" />
     <Compile Include="Classes\UninversalClass.cs" />
     <Compile Include="Classes\UniversalEqup.cs" />
     <Compile Include="Classes\UniversalWeapon.cs" />

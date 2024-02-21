@@ -201,7 +201,7 @@ namespace Wpf_Strategka.Classes
                         Health = (coefficient[0] * Vitality + coefficient[1] * Strength);
                         Mana = (coefficient[2] * Inteligence);
                         PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity;
-                        Armor = coefficient[5] * Dexterity;
+                        Armor = coefficient[5] * Dexterity + 15;
                         MagicDamage = coefficient[6] * Inteligence;
                         MagicDefense = coefficient[7] * Inteligence;
                         CritChanse = (coefficient[8] * Dexterity);
@@ -262,7 +262,7 @@ namespace Wpf_Strategka.Classes
                         Health = (coefficient[0] * Vitality + coefficient[1] * Strength);
                         Mana = (coefficient[2] * Inteligence);
                         PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity;
-                        Armor = coefficient[5] * Dexterity;
+                        Armor = coefficient[5] * Dexterity + 15;
                         MagicDamage = coefficient[6] * Inteligence;
                         MagicDefense = coefficient[7] * Inteligence;
                         if (selectedWeapon.CCUp != 0)
@@ -334,14 +334,14 @@ namespace Wpf_Strategka.Classes
                 {
                     if (App.weaponRare == WeaponRarity.Common)
                     {
-                        Health = (coefficient[0] * Vitality + coefficient[1] * Strength);
-                        Mana = (coefficient[2] * Inteligence);
-                        PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity;
-                        Armor = coefficient[5] * Dexterity;
-                        MagicDamage = coefficient[6] * Inteligence;
-                        MagicDefense = coefficient[7] * Inteligence;
-                        CritChanse = (coefficient[8] * Dexterity);
-                        CritDamage = coefficient[9] * Dexterity;
+                        Health = (coefficient[0] * Vitality + coefficient[1] * Strength) *1.7;
+                        Mana = (coefficient[2] * Inteligence) * 1.7;
+                        PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity * 1.7;
+                        Armor = coefficient[5] * Dexterity * 1.7;
+                        MagicDamage = coefficient[6] * Inteligence * 1.7;
+                        MagicDefense = coefficient[7] * Inteligence * 1.7;
+                        CritChanse = (coefficient[8] * Dexterity) * 1.7;
+                        CritDamage = coefficient[9] * Dexterity * 1.7;
                     }
                     if (App.weaponRare == WeaponRarity.Rare)
                     {
@@ -386,14 +386,14 @@ namespace Wpf_Strategka.Classes
                 {
                     if (App.weaponRare == WeaponRarity.Common)
                     {
-                        Health = (coefficient[0] * Vitality + coefficient[1] * Strength);
-                        Mana = (coefficient[2] * Inteligence);
-                        PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity;
-                        Armor = coefficient[5] * Dexterity;
-                        MagicDamage = coefficient[6] * Inteligence;
-                        MagicDefense = coefficient[7] * Inteligence;
-                        CritChanse = (coefficient[8] * Dexterity);
-                        CritDamage = coefficient[9] * Dexterity;
+                        Health = (coefficient[0] * Vitality + coefficient[1] * Strength) * 1.7;
+                        Mana = (coefficient[2] * Inteligence) * 1.7;
+                        PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity * 1.7;
+                        Armor = coefficient[5] * Dexterity * 1.7;
+                        MagicDamage = coefficient[6] * Inteligence * 1.7;
+                        MagicDefense = coefficient[7] * Inteligence * 1.7;
+                        CritChanse = (coefficient[8] * Dexterity) * 1.7;
+                        CritDamage = coefficient[9] * Dexterity * 1.7;
                     }
                     if (App.weaponRare == WeaponRarity.Rare)
                     {
