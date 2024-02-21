@@ -15,6 +15,8 @@ namespace Wpf_Strategka.Pages
         private bool _twoRignEqup;
         private bool _amuletEqup;
         private bool _helmetEqup;
+        private bool _isPutedOn;
+
         public List<UniversalEqup> Equp { get; set; }
         public EquipmentPage()
         {
@@ -52,6 +54,7 @@ namespace Wpf_Strategka.Pages
         private void EqupCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TempStats.GetOldValues();
+            _isPutedOn = true;
             UniversalEqup selectedEqup = (EqupCB.SelectedItem as UniversalEqup);
             App.uninversalEqup = selectedEqup;
             if (App.uninversalClass.Strength >= selectedEqup.StrReq &&
@@ -69,8 +72,12 @@ namespace Wpf_Strategka.Pages
         }
         private void PutOnBTN_Click(object sender, RoutedEventArgs e)
         {
-            App.uninversalClass.CalculateStatsWithEqup(_oneRignEqup, _twoRignEqup, _amuletEqup, _helmetEqup);
-            ShowInfo();
+            if (_isPutedOn)
+            {
+                App.uninversalClass.CalculateStatsWithEqup(_oneRignEqup, _twoRignEqup, _amuletEqup, _helmetEqup);
+                ShowInfo();
+            }
+            _isPutedOn = false;
         }
 
         private string ShowEqupReq(int overLVLReq, double vitReq, double strReq)
@@ -81,25 +88,22 @@ namespace Wpf_Strategka.Pages
         private void CommonRarity_Checked(object sender, RoutedEventArgs e)
         {
             TempStats.GetOldValues();
+            _isPutedOn = true;
             App.equpRare = WeaponRarity.Common;
-            App.uninversalClass.CalculateStatsWithEqup(_oneRignEqup, _twoRignEqup, _amuletEqup, _helmetEqup);
-            ShowInfo();
         }
 
         private void RareRarity_Checked(object sender, RoutedEventArgs e)
         {
             TempStats.GetOldValues();
+            _isPutedOn = true;
             App.equpRare = WeaponRarity.Rare;
-            App.uninversalClass.CalculateStatsWithEqup(_oneRignEqup, _twoRignEqup, _amuletEqup, _helmetEqup);
-            ShowInfo();
         }
 
         private void EpicRarity_Checked(object sender, RoutedEventArgs e)
         {
             TempStats.GetOldValues();
+            _isPutedOn = true;
             App.equpRare = WeaponRarity.Epic;
-            App.uninversalClass.CalculateStatsWithEqup(_oneRignEqup, _twoRignEqup, _amuletEqup, _helmetEqup);
-            ShowInfo();
         }
 
         private void OneRingRB_Checked(object sender, RoutedEventArgs e)
@@ -147,5 +151,9 @@ namespace Wpf_Strategka.Pages
             ShowInfo();
         }
 
+        private void BackBTN_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new CharacterСharacteristics());
+        }
     }
 }

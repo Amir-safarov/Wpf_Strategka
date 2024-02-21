@@ -63,6 +63,7 @@
             <StackPanel>
                 <CheckBox x:Name="HelmetRB" Checked="HelmetRB_Checked" Unchecked="HelmetRB_Checked">Шлем надет</CheckBox>
             </StackPanel>
+            <Button x:Name="BackBTN" Width="50" HorizontalAlignment="Right" Click="BackBTN_Click">X</Button>
         </StackPanel>
     </Grid>
 </Page>

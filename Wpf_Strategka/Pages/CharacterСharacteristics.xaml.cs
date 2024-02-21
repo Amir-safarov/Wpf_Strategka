@@ -13,7 +13,6 @@ namespace Wpf_Strategka.Pages
 
         private ClassesInfo info = new ClassesInfo();
         int currentPoint;
-        int currentPointWithoutWeaponRarity;
         private bool isSecondLvl;
         private bool isThirdLvl;
         private bool isFourthLvl;
@@ -28,7 +27,7 @@ namespace Wpf_Strategka.Pages
         private double startedIntl;
         private double startedVit;
 
-        public CharacterСharacteristics(UninversalClass selectedClass)
+        public CharacterСharacteristics()
         {
             TempStats.SaveCurrentStats();
             InitializeComponent();
@@ -64,8 +63,8 @@ namespace Wpf_Strategka.Pages
                     textBlock.Text = LimitValue(value, (int)maxValue).ToString();
                     UpdateCharacteristicsFromUI();
                     currentPoint--;
-                    currentPointWithoutWeaponRarity = currentPoint;
-                    CurrentScoreTB.Text = currentPointWithoutWeaponRarity.ToString();
+                    CurrentScoreTB.Text = currentPoint.ToString();
+                    App.uninversalClass.CalculateStats();
                     ShowInfo();
                 }
             }
@@ -87,8 +86,8 @@ namespace Wpf_Strategka.Pages
                     UpdateCharacteristicsFromUI();
                     if (value >= minValue)
                         currentPoint++;
-                    currentPointWithoutWeaponRarity = currentPoint;
-                    CurrentScoreTB.Text = currentPointWithoutWeaponRarity.ToString();
+                    CurrentScoreTB.Text = currentPoint.ToString();
+                    App.uninversalClass.CalculateStats();
                     ShowInfo();
                 }
             }
@@ -115,6 +114,7 @@ namespace Wpf_Strategka.Pages
                 $"Magic Damage: {App.uninversalClass.MagicDamage}\nMagic Defense: {App.uninversalClass.MagicDefense}\n" +
                 $"Crit Chanse: {App.uninversalClass.CritChanse}\nCrit Damage: {App.uninversalClass.CritDamage}";
         }
+
         private void SetStartedValues()
         {
             startedStr = App.uninversalClass.Strength;
@@ -243,8 +243,7 @@ namespace Wpf_Strategka.Pages
         {
             currentPoint = int.Parse(CurrentScoreTB.Text);
             currentPoint += 25;
-            currentPointWithoutWeaponRarity = currentPoint;
-            CurrentScoreTB.Text = currentPointWithoutWeaponRarity.ToString();
+            CurrentScoreTB.Text = currentPoint.ToString();
         }
 
         private void WeaponCB_SelectionChanged(object sender, SelectionChangedEventArgs e)

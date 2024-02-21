@@ -57,7 +57,7 @@ namespace Wpf_Strategka.Pages
         {
             if (App.uninversalClass == null || App.uninversalClass.Name == "")
                 return;
-            NavigationService.Navigate(new CharacterСharacteristics(App.uninversalClass));
+            NavigationService.Navigate(new CharacterСharacteristics());
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)

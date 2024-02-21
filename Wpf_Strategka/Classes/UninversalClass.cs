@@ -466,9 +466,12 @@ namespace Wpf_Strategka.Classes
                 {
                     if (App.weaponRare == WeaponRarity.Common)
                     {
-                        Health = (coefficient[0] * Vitality + coefficient[1] * Strength);
-                        Mana = (coefficient[2] * Inteligence);
-                        PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity;
+                        if (selectedWeapon.HpUp != 0)
+                            Health = (coefficient[0] * Vitality + coefficient[1] * Strength) * selectedWeapon.HpUp;
+                        else
+                            Health = (coefficient[0] * Vitality + coefficient[1] * Strength);
+                        if (selectedWeapon.IntlUp != 0)
+                            Mana = (coefficient[2] * Inteligence) * selectedWeapon.IntlUp; PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity;
                         Armor = coefficient[5] * Dexterity;
                         MagicDamage = coefficient[6] * Inteligence;
                         MagicDefense = coefficient[7] * Inteligence;
@@ -526,9 +529,12 @@ namespace Wpf_Strategka.Classes
                 {
                     if (App.weaponRare == WeaponRarity.Common)
                     {
-                        Health = (coefficient[0] * Vitality + coefficient[1] * Strength);
-                        Mana = (coefficient[2] * Inteligence);
-                        PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity;
+                        if (selectedWeapon.HpUp != 0)
+                            Health = (coefficient[0] * Vitality + coefficient[1] * Strength) * selectedWeapon.HpUp;
+                        else
+                            Health = (coefficient[0] * Vitality + coefficient[1] * Strength);
+                        if (selectedWeapon.IntlUp != 0)
+                            Mana = (coefficient[2] * Inteligence) * selectedWeapon.IntlUp; PhysicalDamage = coefficient[3] * Strength + coefficient[4] * Dexterity;
                         Armor = coefficient[5] * Dexterity;
                         MagicDamage = coefficient[6] * Inteligence;
                         MagicDefense = coefficient[7] * Inteligence;
